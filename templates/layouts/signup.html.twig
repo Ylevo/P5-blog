@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="d-flex flex-column justify-content-center" id="login-box">
+        <div class="login-box-header">
+            <h4>Sign up</h4>
+        </div>
+        <form id="login" method="post" action="/signup">
+            <div class="email-login">
+                <input type="text" name="firstName" class="email-input form-control" required="" placeholder="First Name" minlength="6">
+                <input type="text" name="lastName" class="email-input form-control" required="" placeholder="Last Name" minlength="6">
+                <input type="email" name="email" class="email-input form-control" required="" placeholder="Email" minlength="6">
+                <input type="password" name="password" class="password-input form-control" required="" placeholder="Password" minlength="6"></div>
+            <div class="submit-row">
+                <button class="btn btn-primary d-block box-shadow w-100" id="submit-id-submit" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

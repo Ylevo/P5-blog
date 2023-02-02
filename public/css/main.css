@@ -27,3 +27,111 @@ header.masthead .site-heading {
   padding-top: 100px;
 }
 
+/* Login form */
+
+#login-box {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 25px !important;
+  overflow: hidden;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid rgba(33,37,41,0.15);
+}
+
+.login-box-header {
+  background-color: rgb(255,255,255);
+  text-align: center;
+  padding: 18px 25px 15px;
+}
+
+.login-box-header {
+  border: none;
+  border-bottom: 1px solid rgb(224,224,224);
+}
+
+.login-box-header h4 {
+  font-weight: 400;
+  font-size: 27px;
+  color: rgb(139,139,139);
+}
+
+.login-box-content {
+  background-color: #ffffff;
+  padding: 20px 20px 10px;
+}
+
+.login-box-content i {
+  color: white;
+  padding: 11px 20px;
+  font-size: 18px;
+}
+
+#login-box .box-shadow {
+  box-shadow: 0 2px 2px 0 rgba(41,48,59,.24), 0 0 2px 0 rgba(41,48,59,.12);
+  border-radius: 5px;
+}
+
+.email-input {
+  border-radius: 5px;
+  color: #29303b;
+  font-size: 18px;
+  height: auto;
+  padding: 11px 10px 12px 40px;
+}
+
+.form-control {
+  box-shadow: none;
+  font-size: 16px;
+  padding: 10px 12px;
+  transition: border-color .08s ease-in-out,box-shadow .08s ease-in-out;
+  margin-top: 10px;
+}
+
+.email-login {
+  padding: 10px 20px;
+}
+
+#submit-id-submit {
+  margin-top: 0;
+  height: 46px;
+  background-color: #007b95;
+  border: 0;
+  color: rgb(255,255,255);
+  margin-bottom: 8px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.submit-row {
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.label-text {
+  color: #8b8b8b;
+}
+
+#forgot-password-link {
+}
+
+#login-box-footer {
+  text-align: center;
+  border-top: 1px solid #dedfe0;
+  padding: 18px 20px 23px;
+}
+
+#register-link {
+  color: #2474c1;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+#login-box-footer p {
+  color: #8b8b8b;
+}
+
+#submit-id-submit:hover {
+  background-color: rgb(0,133,161);
+}
+

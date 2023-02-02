@@ -17,6 +17,10 @@ class Router
     {
         $this->bramusRouter->setNamespace('\App\Controllers');
         $this->bramusRouter->get('/', 'HomeController@home');
+        $this->bramusRouter->get('/login', 'UserController@loginForm');
+        $this->bramusRouter->post('/login', 'UserController@loginSubmit');
+        $this->bramusRouter->get('/signup', 'UserController@signupForm');
+        $this->bramusRouter->post('/signup', 'UserController@signupSubmit');
     }
 
     public function run() : void
