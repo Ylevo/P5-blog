@@ -16,7 +16,9 @@
     {% include('layouts/nav.html.twig') %}
     {% include('layouts/header.html.twig') %}
     <div class="container">
-        <p>{{ session.getErrorMessage() }}</p>
+        {% for error_message in session.getErrorMessages() %}
+        <p>{{ error_message }}</p>
+        {% endfor %}
         {% block body %}{% endblock %}
     </div>
     {% include('layouts/footer.html.twig') %}

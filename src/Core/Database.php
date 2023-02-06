@@ -1,13 +1,23 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Core;
+
 use PDO;
+use PDOException;
 
 class Database
 {
     public PDO $pdo;
 
-    public function __construct($db, $username = NULL, $password = NULL, $host = '127.0.0.1', $port = 3306, $options = [])
+    public function __construct(
+        string $db,
+        string $username = NULL,
+        string $password = NULL,
+        string $host = '127.0.0.1',
+        int $port = 3306,
+        array $options = [])
+
     {
         $default_options = [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -19,14 +29,13 @@ class Database
 
         try {
             $this->pdo = new PDO($dsn, $username, $password, $options);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        } catch (PDOException $e) {
+            throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
     public function run($sql, $args = NULL)
     {
-        if (!$args)
-        {
+        if (!$args) {
             return $this->pdo->query($sql);
         }
         $stmt = $this->pdo->prepare($sql);
@@ -34,3 +43,4 @@ class Database
         return $stmt;
     }
 }
+
