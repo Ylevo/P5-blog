@@ -11,9 +11,9 @@ class LoginSubmitController extends Controller
 {
     public function loginSubmit()
     {
-        $auth_service = new AuthService(new UserModel(), $this->session);
+        $authService = new AuthService(new UserModel(), $this->session);
 
-        if ($auth_service->loginUser()) {
+        if ($authService->loginUser($_POST['email'], $_POST['password'])) {
             header("Location: /");
         }
 

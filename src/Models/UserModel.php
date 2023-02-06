@@ -12,12 +12,12 @@ class UserModel extends Model
         parent::__construct();
     }
 
-    public function createUser($first_name, $last_name, $email, $password_hash) : string|bool
+    public function createUser($firstName, $lastName, $email, $passwordHash) : string|bool
     {
         if ($this->checkIfEmailUsed($email)) {
             return false;
         }
-        $this->database->run("INSERT INTO user (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)", [$email, $password_hash, $first_name, $last_name]);
+        $this->database->run("INSERT INTO user (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)", [$email, $passwordHash, $firstName, $lastName]);
         return $this->database->pdo->lastInsertId();
     }
 

@@ -11,9 +11,9 @@ class SignupSubmitController extends Controller
 {
     public function signupSubmit()
     {
-        $auth_service = new AuthService(new UserModel(), $this->session);
+        $authService = new AuthService(new UserModel(), $this->session);
 
-        if ($auth_service->signupUser($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'])) {
+        if ($authService->signupUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'])) {
             header('Location: /');
         }
 

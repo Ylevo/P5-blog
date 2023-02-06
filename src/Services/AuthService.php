@@ -8,23 +8,23 @@ use App\Models\UserModel;
 
 class AuthService
 {
-    private UserModel $user_model;
+    private UserModel $userModel;
     private Session $session;
 
-    public function __construct(UserModel $user_model, Session $session)
+    public function __construct(UserModel $userModel, Session $session)
     {
-        $this->user_model = $user_model;
+        $this->userModel = $userModel;
         $this->session = $session;
     }
 
-    public function signupUser(string $first_name, string $last_name, string $email, string $password) : bool
+    public function signupUser(string $firstName, string $lastName, string $email, string $password) : bool
     {
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $user = $this->user_model->createUser($first_name, $last_name, $email, $password_hash);
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $user = $this->userModel->createUser($firstName, $lastName, $email, $passwordHash);
 
         if ($user) {
-            $this->session->set(('user_id'), $user);
-            $this->session->set(('user_role'), 'Member');
+            $this->session->set(('userId'), $user);
+            $this->session->set(('userRole'), 'Member');
         } else {
             $this->session->addErrorMessage('Email already used.');
         }
@@ -32,13 +32,13 @@ class AuthService
         return (bool) $user;
     }
 
-    public function loginUser() : bool
+    public function loginUser(string $email, string $password) : bool
     {
-        $user = $this->user_model->getUser($_POST['email']);
+        $user = $this->userModel->getUser($email);
 
-        if ($user && password_verify($_POST['password'], $user['password_hash'])) {
-            $this->session->set(('user_id'), $user['user_id']);
-            $this->session->set(('user_role'), $user['user_role']);
+        if ($user && password_verify($password, $user['password_hash'])) {
+            $this->session->set(('userId'), $user['user_id']);
+            $this->session->set(('userRole'), $user['user_role']);
         } else {
             $this->session->addErrorMessage('Invalid credentials.');
             $user = false;
@@ -49,7 +49,7 @@ class AuthService
 
     public function logoutUser()
     {
-        $this->session->remove('user_id');
-        $this->session->remove('user_role');
+        $this->session->remove('userId');
+        $this->session->remove('userRole');
     }
 }

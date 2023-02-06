@@ -27,19 +27,19 @@ class Session
 
     public function addErrorMessage(string $message) : void
     {
-        $stored_messages = $this->get('error_messages');
-        if ($stored_messages == null) {
-            $this->set('error_messages', array($message));
+        $storedMessages = $this->get('errorMessages');
+        if ($storedMessages == null) {
+            $this->set('errorMessages', array($message));
         } else {
-            $stored_messages[] = $message;
-            $this->set('error_messages', $stored_messages);
+            $storedMessages[] = $message;
+            $this->set('errorMessages', $storedMessages);
         }
     }
 
     public function getErrorMessages()
     {
-        $error_message = $this->get('error_messages');
-        $this->remove('error_messages');
+        $error_message = $this->get('errorMessages');
+        $this->remove('errorMessages');
         return $error_message;
     }
 

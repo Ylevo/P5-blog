@@ -5,6 +5,7 @@ namespace App\Core;
 
 use PDO;
 use PDOException;
+use PDOStatement;
 
 class Database
 {
@@ -33,7 +34,7 @@ class Database
             throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
-    public function run($sql, $args = NULL)
+    public function run(string $sql, array $args = null) : PDOStatement
     {
         if (!$args) {
             return $this->pdo->query($sql);
