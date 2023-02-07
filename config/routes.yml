@@ -24,4 +24,8 @@ routes:
     method: POST
     pattern: /signup
     controller: Auth\SignupSubmitController@signupSubmit
-    
+middlewares:
+  -
+    method: GET|POST
+    pattern: /(login|signup)
+    callback: checkIfAlreadyLoggedIn

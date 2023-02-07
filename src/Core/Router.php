@@ -2,6 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Core;
+use App\Models\UserModel;
+use App\Services\AuthService;
 use Bramus\Router\Router as BramusRouter;
 use App\Controllers;
 
@@ -9,11 +11,13 @@ class Router
 {
     private BramusRouter $bramusRouter;
     private Session $session;
+    private AuthService $authService;
 
     public function __construct()
     {
         $this->bramusRouter = new BramusRouter();
         $this->session = new Session();
+        $this->authService = new AuthService(new UserModel(), $this->session);
         $this->addRoutes();
     }
 
@@ -24,15 +28,22 @@ class Router
         foreach ($parsedRouting['routes'] as $route) {
             $this->bramusRouter->match($route['method'], $route['pattern'], $route['controller']);
         }
-        $this->bramusRouter->before('GET|POST', '/(login|signup)', function() {
-            if ($this->session->get(('userId'))) {
-                header("Location: /");
-            }
-        });
+        foreach ($parsedRouting['middlewares'] as $middleware) {
+            $this->bramusRouter->before($middleware['method'], $middleware['pattern'], [$this, $middleware['callback']]);
+        }
+    }
+
+    public function checkIfAlreadyLoggedIn()
+    {
+        if ($this->authService->isLoggedIn()) {
+            header("Location: /");
+        }
     }
 
     public function run() : void
     {
         $this->bramusRouter->run();
     }
+
+
 }
