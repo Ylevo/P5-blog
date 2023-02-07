@@ -1,0 +1,27 @@
+namespace: \App\Controllers
+routes:
+  -
+    method: GET
+    pattern: /
+    controller: HomeController@home
+  -
+    method: GET
+    pattern: /login
+    controller: Auth\LoginFormController@loginForm
+  -
+    method: POST
+    pattern: /login
+    controller: Auth\LoginSubmitController@loginSubmit
+  -
+    method: GET
+    pattern: /logout
+    controller: Auth\LogoutController@logout
+  -
+    method: GET
+    pattern: /signup
+    controller: Auth\SignupFormController@signupForm
+  -
+    method: POST
+    pattern: /signup
+    controller: Auth\SignupSubmitController@signupSubmit
+    

@@ -18,7 +18,6 @@ class Database
         string $host = '127.0.0.1',
         int $port = 3306,
         array $options = [])
-
     {
         $default_options = [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -34,6 +33,7 @@ class Database
             throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
+
     public function run(string $sql, array $args = null) : PDOStatement
     {
         if (!$args) {
