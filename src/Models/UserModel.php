@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -11,21 +12,19 @@ class UserModel extends Model
         parent::__construct();
     }
 
-    public function loginUser($email, $password) : bool
+    public function createUser($firstName, $lastName, $email, $passwordHash) : string|bool
     {
-
-    }
-
-    public function signupUser($firstName, $lastName, $email, $password) : bool
-    {
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        if (!$this->checkIfEmailUsed($email)) {
-            $this->database->run("INSERT INTO user (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)", [$email, $password_hash, $firstName, $lastName]);
-            return true;
-        }
-        else {
+        if ($this->checkIfEmailUsed($email)) {
             return false;
         }
+        $this->database->run("INSERT INTO user (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)", [$email, $passwordHash, $firstName, $lastName]);
+        return $this->database->pdo->lastInsertId();
+    }
+
+    public function getUser($email) : mixed
+    {
+        $stmt = $this->database->run("SELECT * FROM user WHERE email = ?", [$email]);
+        return $stmt->fetch();
     }
 
     public function checkIfEmailUsed($email) : bool

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Core;
 
@@ -19,16 +20,32 @@ class Session
         unset($_SESSION[$key]);
     }
 
-    public function addErrorMessage($message) : void
+    public function __call($name, $arguments)
     {
-        $this->set('errorMessage', $message);
+        return $this->get($name);
     }
 
-    public function getErrorMessage()
+    public function addErrorMessage(string $message) : void
     {
-        $errorMessage = $this->get('errorMessage');
-        $this->remove('errorMessage');
-        return $errorMessage;
+        $storedMessages = $this->get('errorMessages');
+        if ($storedMessages == null) {
+            $this->set('errorMessages', array($message));
+        } else {
+            $storedMessages[] = $message;
+            $this->set('errorMessages', $storedMessages);
+        }
+    }
+
+    public function getErrorMessages()
+    {
+        $error_message = $this->get('errorMessages');
+        $this->remove('errorMessages');
+        return $error_message;
+    }
+
+    public function getSession() : array
+    {
+        return $_SESSION;
     }
 
 }

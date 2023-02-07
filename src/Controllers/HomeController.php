@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controllers;
 
@@ -6,13 +7,9 @@ use App\Core\Controller;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function home(): void
+    public function home()
     {
         $this->render('layouts/home.html.twig');
     }
+
 }
