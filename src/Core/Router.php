@@ -2,28 +2,42 @@
 declare(strict_types=1);
 
 namespace App\Core;
+use App\Models\UserModel;
+use App\Services\AuthService;
 use Bramus\Router\Router as BramusRouter;
 use App\Controllers;
 
 class Router
 {
     private BramusRouter $bramusRouter;
+    private Session $session;
+    private AuthService $authService;
 
     public function __construct()
     {
         $this->bramusRouter = new BramusRouter();
+        $this->session = new Session();
+        $this->authService = new AuthService(new UserModel(), $this->session);
         $this->addRoutes();
     }
 
-    private function addRoutes() : void // fichier config à faire charger ici plus tard
+    private function addRoutes() : void
     {
-        $this->bramusRouter->setNamespace('\App\Controllers');
-        $this->bramusRouter->get('/', 'HomeController@home');
-        $this->bramusRouter->get('/login', 'Auth\LoginFormController@loginForm');
-        $this->bramusRouter->post('/login', 'Auth\LoginSubmitController@loginSubmit');
-        $this->bramusRouter->get('/logout', 'Auth\LogoutController@logout');
-        $this->bramusRouter->get('/signup', 'Auth\SignupFormController@signupForm');
-        $this->bramusRouter->post('/signup', 'Auth\SignupSubmitController@signupSubmit');
+        $parsedRouting = yaml_parse_file(__DIR__ . '/../../config/routes.yml');
+        $this->bramusRouter->setNamespace($parsedRouting['namespace']);
+        foreach ($parsedRouting['routes'] as $route) {
+            $this->bramusRouter->match($route['method'], $route['pattern'], $route['controller']);
+        }
+        foreach ($parsedRouting['middlewares'] as $middleware) {
+            $this->bramusRouter->before($middleware['method'], $middleware['pattern'], [$this, $middleware['callback']]);
+        }
+    }
+
+    public function checkIfLoggedIn()
+    {
+        if ($this->authService->isLoggedIn()) {
+            header("Location: /");
+        }
     }
 
     public function run() : void
@@ -31,8 +45,5 @@ class Router
         $this->bramusRouter->run();
     }
 
-    public function test() : void
-    {
-        echo "lol";
-    }
+
 }

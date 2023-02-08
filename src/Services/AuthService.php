@@ -52,4 +52,9 @@ class AuthService
         $this->session->remove('userId');
         $this->session->remove('userRole');
     }
+
+    public function isLoggedIn()
+    {
+        return $this->session->get('userId');
+    }
 }
