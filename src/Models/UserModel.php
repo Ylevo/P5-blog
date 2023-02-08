@@ -7,11 +7,6 @@ use App\Core\Model;
 
 class UserModel extends Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function createUser($firstName, $lastName, $email, $passwordHash) : string|bool
     {
         if ($this->checkIfEmailUsed($email)) {

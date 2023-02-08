@@ -135,3 +135,11 @@ header.masthead .site-heading {
   background-color: rgb(0,133,161);
 }
 
+/* Posts related */
+
+.post-meta .author {
+  color: #212529;
+}
+
+
+

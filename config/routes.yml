@@ -24,6 +24,14 @@ routes:
     method: POST
     pattern: /signup
     controller: Auth\SignupSubmitController@signupSubmit
+  -
+    method: GET
+    pattern: /posts
+    controller: PostsController@getPosts
+  -
+    method: GET
+    pattern: /posts(/\d+)?
+    controller: PostsController@getPosts
 middlewares:
   -
     method: GET|POST

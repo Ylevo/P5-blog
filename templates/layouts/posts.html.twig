@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8">
+            {% for post in posts %}
+                <div class="post-preview"><a href="/post/{{ post.post_id }}">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                        <h3 class="post-subtitle">{{ post.lede }}</h3>
+                    </a>
+                    <p class="post-meta">
+                        Posted by <span class="author">{{ post.first_name ~ " " ~ post.last_name }}</span>
+                        on {{ post.creation_date|date("F j, Y") }}
+                        - Last modified on {{ post.last_modified|date("F j, Y") }}
+                    </p>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
