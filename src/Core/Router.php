@@ -33,7 +33,7 @@ class Router
         }
     }
 
-    public function checkIfAlreadyLoggedIn()
+    public function checkIfLoggedIn()
     {
         if ($this->authService->isLoggedIn()) {
             header("Location: /");
