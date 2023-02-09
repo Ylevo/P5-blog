@@ -32,6 +32,10 @@ routes:
     method: GET
     pattern: /posts(/\d+)?
     controller: PostsController@getPosts
+  -
+    method: GET
+    pattern: /post(/\d+)
+    controller: PostController@getPost
 middlewares:
   -
     method: GET|POST

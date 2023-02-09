@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <h3 class="post-subtitle">{{ post.lede }}</h3>
+            <p class="post-meta">
+                Posted by <span class="author">{{ post.first_name ~ " " ~ post.last_name }}</span>
+                on {{ post.creation_date|date("F j, Y") }}
+                - Last modified on {{ post.last_modified|date("F j, Y") }}
+            </p>
+            <div class="post-content">
+                {{ post.content|striptags('<b>,<p>')|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

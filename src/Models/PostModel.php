@@ -23,4 +23,14 @@ class PostModel extends Model
     {
         return $this->database->run('SELECT COUNT(*) FROM post')->fetchColumn();
     }
+
+    public function getPost(int $pageId)
+    {
+        return $this->database->run(
+            'SELECT title, lede, content, creation_date, last_modified_date, first_name, last_name 
+                 FROM post
+                 INNER JOIN user ON post.user_id = user.user_id
+                 WHERE post_id = ?
+                 ', [$pageId])->fetch();
+    }
 }
