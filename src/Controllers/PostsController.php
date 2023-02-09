@@ -14,6 +14,7 @@ class PostsController extends Controller
         $postsData = (new PostService(new PostModel()))->getPaginatedPosts($page, $postsPerPage);
         $this->render('layouts/posts.html.twig', [
             'posts' => $postsData['posts'],
+            'currentPage' => $postsData['currentPage'],
             'lastPage' => $postsData['lastPage']
         ]);
     }

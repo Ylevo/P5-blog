@@ -137,9 +137,39 @@ header.masthead .site-heading {
 
 /* Posts related */
 
+@media only screen and (min-width: 768px) {
+  .post-title {
+    font-size: 36px;
+  }
+}
+
+.post-title {
+  font-size: 34px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.post-subtitle {
+  font-weight: 300;
+  margin: 0 0 10px;
+}
+
+.post-meta {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  color: #6c757d;
+}
+
 .post-meta .author {
   color: #212529;
 }
+
+
+
+
+
+
 
 
 

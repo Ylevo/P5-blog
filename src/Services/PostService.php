@@ -16,9 +16,15 @@ class PostService
 
     public function getPaginatedPosts(int $page = 1, int $postsPerPage = 5) : array
     {
-        $data['posts'] = $this->postModel->getPosts($page, $postsPerPage);
-        $data['lastPage'] = ceil($this->postModel->getPostsCount() / $postsPerPage);
+        $data['lastPage'] = (int) ceil($this->postModel->getPostsCount() / $postsPerPage);
+        $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
+        $data['posts'] = $this->postModel->getPosts($data['currentPage'], $postsPerPage);
 
         return $data;
+    }
+
+    public function getSinglePost(int $postId)
+    {
+        return $this->postModel->getPost($postId);
     }
 }
