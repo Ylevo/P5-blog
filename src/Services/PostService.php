@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\PostModel;
+use App\Entities\Post;
 
 class PostService
 {
@@ -18,13 +19,16 @@ class PostService
     {
         $data['lastPage'] = (int) ceil($this->postModel->getPostsCount() / $postsPerPage);
         $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
-        $data['posts'] = $this->postModel->getPosts($data['currentPage'], $postsPerPage);
+        $postsArray = $this->postModel->getPosts($data['currentPage'], $postsPerPage);
+        $data['posts'] = array_map(function($post){
+            return new Post($post);
+        }, $postsArray);
 
         return $data;
     }
 
-    public function getSinglePost(int $postId)
+    public function getSinglePost(int $postId) : Post
     {
-        return $this->postModel->getPost($postId);
+        return new Post($this->postModel->getPost($postId));
     }
 }

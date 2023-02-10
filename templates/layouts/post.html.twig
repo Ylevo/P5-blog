@@ -6,7 +6,7 @@
             <h2 class="post-title">{{ post.title }}</h2>
             <h3 class="post-subtitle">{{ post.lede }}</h3>
             <p class="post-meta">
-                Posted by <span class="author">{{ post.first_name ~ " " ~ post.last_name }}</span>
+                Posted by <span class="author">{{ post.authorName }}</span>
                 on {{ post.creation_date|date("F j, Y") }}
                 - Last modified on {{ post.last_modified|date("F j, Y") }}
             </p>
