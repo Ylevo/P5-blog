@@ -9,9 +9,9 @@ use App\Services\PostService;
 
 class PostsController extends Controller
 {
-    public function getPosts(int $page = 1, int $postsPerPage = 5) // could define posts per page in config file/admin dashboard later
+    public function getPosts(?int $page = 1, int $postsPerPage = 5) // could define posts per page in config file/admin dashboard later
     {
-        $postsData = (new PostService(new PostModel()))->getPaginatedPosts($page, $postsPerPage);
+        $postsData = (new PostService(new PostModel()))->getPaginatedPosts($page ?? 1, $postsPerPage);
         $this->render('layouts/posts.html.twig', [
             'posts' => $postsData['posts'],
             'currentPage' => $postsData['currentPage'],
