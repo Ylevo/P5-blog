@@ -2,6 +2,12 @@
   "use strict"; // Start of use strict
   window.onload = function () {
 
+    document.querySelectorAll('.pagination input[type="text"]').forEach(function(input) {
+      input.addEventListener('blur', function() {
+        this.value = "";
+      })
+    })
+
     // Show the navbar when the page is scrolled up
     var MQL = 992;
     var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);

@@ -18,4 +18,11 @@
             {% endfor %}
         </div>
     </div>
+    {% include('layouts/pagination.html.twig') with
+        {
+            action : '/posts/',
+            currentPage,
+            lastPage
+        }
+    only %}
 {% endblock %}

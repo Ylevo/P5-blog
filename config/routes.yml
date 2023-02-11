@@ -30,8 +30,12 @@ routes:
     controller: PostsController@getPosts
   -
     method: GET
-    pattern: /posts(/\d+)?
+    pattern: /posts/(\d+)
     controller: PostsController@getPosts
+  -
+    method: POST
+    pattern: /posts/
+    controller: PostsController@getPostsFromPagination
   -
     method: GET
     pattern: /post(/\d+)

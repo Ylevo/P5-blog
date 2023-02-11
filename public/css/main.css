@@ -165,6 +165,15 @@ header.masthead .site-heading {
   color: #212529;
 }
 
+/* Pagination */
+
+.pagination {
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.pagination input {
+  width: 42px;
+}
+
 
 
 

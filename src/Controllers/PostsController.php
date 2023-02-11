@@ -19,4 +19,10 @@ class PostsController extends Controller
         ]);
     }
 
+    public function getPostsFromPagination()
+    {
+        $pageNumber = empty($_POST['pageNumber'][0]) ? $_POST['pageNumber'][1] : $_POST['pageNumber'][0];
+        $this->getPosts((int)$pageNumber);
+    }
+
 }
