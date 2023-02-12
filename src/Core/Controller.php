@@ -22,4 +22,10 @@ abstract class Controller
     {
         echo $this->twig->render($template, $params);
     }
+
+    public function badRequest()
+    {
+        $this->session->addErrorMessage("You must be logged in to post a comment.");
+        exit(header("Location: /"));
+    }
 }

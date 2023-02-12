@@ -13,7 +13,9 @@ class UserModel extends Model
             return false;
         }
 
-        $this->database->run("INSERT INTO user (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)", [$email, $passwordHash, $firstName, $lastName]);
+        $this->database->run("INSERT INTO user (email, password_hash, first_name, last_name) 
+                                   VALUES (?, ?, ?, ?)",
+                                   [$email, $passwordHash, $firstName, $lastName]);
 
         return $this->database->pdo->lastInsertId();
     }

@@ -5,7 +5,6 @@ namespace App\Core;
 use App\Models\UserModel;
 use App\Services\AuthService;
 use Bramus\Router\Router as BramusRouter;
-use App\Controllers;
 
 class Router
 {
@@ -36,7 +35,7 @@ class Router
     public function checkIfLoggedIn()
     {
         if ($this->authService->isLoggedIn()) {
-            header("Location: /");
+            exit(header("Location: /"));
         }
     }
 

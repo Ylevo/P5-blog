@@ -21,6 +21,10 @@ class PostsController extends Controller
 
     public function getPostsFromPagination()
     {
+        if (!isset($_POST['pageNumber'])) {
+            $this->badRequest();
+        }
+
         $pageNumber = empty($_POST['pageNumber'][0]) ? $_POST['pageNumber'][1] : $_POST['pageNumber'][0];
         $this->getPosts((int)$pageNumber);
     }
