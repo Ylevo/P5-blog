@@ -25,7 +25,7 @@ abstract class Controller
 
     public function badRequest()
     {
-        $this->session->addErrorMessage("You must be logged in to post a comment.");
+        $this->session->addErrorMessage("Error 400 : bad request.");
         exit(header("Location: /"));
     }
 }
