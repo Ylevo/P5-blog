@@ -30,6 +30,7 @@ class Router
         foreach ($parsedRouting['middlewares'] as $middleware) {
             $this->bramusRouter->before($middleware['method'], $middleware['pattern'], [$this, $middleware['callback']]);
         }
+        $this->bramusRouter->set404($parsedRouting['404']);
     }
 
     public function checkIfLoggedIn()

@@ -1,4 +1,5 @@
 namespace: \App\Controllers
+404: PageNotFoundController@notFound
 routes:
   -
     method: GET

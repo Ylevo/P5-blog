@@ -29,6 +29,8 @@ class PostService
 
     public function getSinglePost(int $postId) : Post
     {
-        return new Post($this->postModel->getPost($postId));
+        $postData = $this->postModel->getPost($postId);
+
+        return $postData ? new Post($postData) : exit(header("Location: /404"));
     }
 }

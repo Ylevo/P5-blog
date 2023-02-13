@@ -238,6 +238,22 @@ header.masthead .site-heading {
   opacity: 0.4;
 }
 
+/* 404 page */
+
+h2.not-found {
+  font-size: 80px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+p.not-found {
+  margin-top: 0;
+  margin-bottom: 35px;
+  font-weight: bold;
+  font-size: 23px;
+  text-align: center;
+}
+
 
 
 
