@@ -27,6 +27,18 @@ header.masthead .site-heading {
   padding-top: 100px;
 }
 
+.dashboard-footer-link {
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 9px;
+}
+
+p.copyright {
+  margin-top: 12px;
+}
+
+
 /* Login form */
 
 #login-box {
@@ -252,6 +264,24 @@ p.not-found {
   font-weight: bold;
   font-size: 23px;
   text-align: center;
+}
+
+/* Admin dashboard */
+
+.dashboard-borders {
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, gray, rgba(0, 0, 0, 0)) 1 100%;
+}
+
+.dashboard-menu-header {
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.dashboard-menu a {
+  text-decoration: underline;
 }
 
 

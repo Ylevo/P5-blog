@@ -5,6 +5,9 @@ namespace App\Core;
 
 class Session
 {
+    private const ADMIN_ROLE = 'Admin';
+    private const MEMBER_ROLE = 'Member';
+
     public function get($key) : mixed
     {
         return $_SESSION[$key] ?? null;
@@ -43,9 +46,25 @@ class Session
         return $error_message;
     }
 
+    public function destroySession()
+    {
+        $_SESSION = array();
+        session_destroy();
+    }
+
     public function getSession() : array
     {
         return $_SESSION;
+    }
+
+    public function isLoggedIn()
+    {
+        return $this->get('userId');
+    }
+
+    public function isUserAdmin()
+    {
+        return $this->get('userRole') == $this::ADMIN_ROLE;
     }
 
 }

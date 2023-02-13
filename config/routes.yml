@@ -41,8 +41,16 @@ routes:
     method: POST
     pattern: /signup
     controller: Auth\SignupSubmitController@signupSubmit
+  -
+    method: GET
+    pattern: /admin
+    controller: Admin\AdminDashboardController@dashboard
 middlewares:
   -
     method: GET|POST
     pattern: /(login|signup)
     callback: checkIfLoggedIn
+  -
+    method: GET|POST
+    pattern: /admin
+    callback: checkIfAdmin

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto">
+            <h2 class="text-center">Admin Dashboard</h2>
+            <hr>
+            <div class="d-flex dashboard-menu">
+                <div class="text-center d-flex flex-column col-sm">
+                    <span class="dashboard-menu-header">Users</span>
+                    <a href="#">View users</a>
+                </div>
+                <div class="text-center d-flex flex-column col-sm dashboard-borders">
+                    <span class="dashboard-menu-header">Posts</span>
+                    <a href="#">View posts</a>
+                    <a href="#">Create new post</a>
+                </div>
+                <div class="text-center d-flex flex-column col-sm">
+                    <span class="dashboard-menu-header">Comments</span>
+                    <a href="#">View comments</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

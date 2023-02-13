@@ -7,6 +7,11 @@
                     <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li>
                     <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
                 </ul>
+                {%  if session.isUserAdmin()  %}
+                <p class="dashboard-footer-link">
+                    <a href="/admin">Admin Dashboard</a>
+                </p>
+                {% endif %}
                 <p class="text-muted copyright">Copyright&nbsp;©&nbsp;Brand 2023</p>
             </div>
         </div>

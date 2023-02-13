@@ -28,7 +28,12 @@ class CommentService
     public function addComment(int $postId, string $commentContent) : void
     {
         if ($this->session->get('userId')) {
-            $this->commentModel->addComment($postId, $this->session->get('userId'), $commentContent, date('Y-m-d H:i:s'), false);
+            $this->commentModel->addComment(
+                $postId,
+                $this->session->get('userId'),
+                $commentContent,
+                date('Y-m-d H:i:s'),
+                $this->session->get('userRole') == 'Admin');
         } else {
             $this->session->addErrorMessage("You must be logged in to post a comment.");
         }

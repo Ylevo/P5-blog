@@ -2,21 +2,17 @@
 declare(strict_types=1);
 
 namespace App\Core;
-use App\Models\UserModel;
-use App\Services\AuthService;
 use Bramus\Router\Router as BramusRouter;
 
 class Router
 {
     private BramusRouter $bramusRouter;
     private Session $session;
-    private AuthService $authService;
 
     public function __construct()
     {
         $this->bramusRouter = new BramusRouter();
         $this->session = new Session();
-        $this->authService = new AuthService(new UserModel(), $this->session);
         $this->addRoutes();
     }
 
@@ -35,7 +31,15 @@ class Router
 
     public function checkIfLoggedIn()
     {
-        if ($this->authService->isLoggedIn()) {
+        if ($this->session->isLoggedIn()) {
+            exit(header("Location: /"));
+        }
+    }
+
+    public function checkIfAdmin()
+    {
+        if (!$this->session->isUserAdmin()) {
+            $this->session->addErrorMessage("Unauthorized.");
             exit(header("Location: /"));
         }
     }
