@@ -12,6 +12,6 @@ class LogoutController extends Controller
     public function logout()
     {
         (new AuthService(new UserModel(), $this->session))->logoutUser();
-        header("Location: /");
+        exit(header("Location: /"));
     }
 }

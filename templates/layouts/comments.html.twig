@@ -1,0 +1,37 @@
+<div class="d-flex flex-column col-md-8 mx-auto">
+    <hr/>
+    <div class="bg-white p-2 px-4">
+        <h2>Comments</h2>
+
+        {% if session.userId is not null %}
+            <form method="POST" action="/post/{{ postId }}">
+                <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                    <textarea required class="form-control comment-input" name="commentContent" minlength="5" maxlength="600" placeholder="Add comment"></textarea>
+                    <button class="btn btn-primary comment-submit" type="submit">Comment</button>
+                    <input type="hidden" name="postId" value="{{ postId }}"/>
+                </div>
+            </form>
+        {% else %}
+            <p>You must be <a href="/login">logged in</a> to post a comment.</p>
+        {% endif %}
+
+        {% for comment in comments %}
+            {% if (comment.validated) or (not comment.validated and session.userId == comment.userId) %}
+                <div class="comment">
+                    <div class="d-flex flex-row align-items-center comment-header">
+                        <div class="comment-author">{{ comment.authorName }}</div>
+                        <div class="comment-dot"></div>
+                        <div class="comment-date">{{ comment.creationDate|date("F j, Y") }}</div>
+
+                        {% if not comment.validated %}
+                            <div class="comment-unvalidated">Waiting for validation</div>
+                        {% endif %}
+
+                    </div>
+                    <div class="comment-content {{ comment.validated ? "" : "unvalidated" }}"><span>{{ comment.content }}</span></div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+</div>

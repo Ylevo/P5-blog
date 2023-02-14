@@ -3,7 +3,23 @@ routes:
   -
     method: GET
     pattern: /
-    controller: HomeController@home
+    controller: PostsController@getPosts
+  -
+    method: GET
+    pattern: /posts(/\d+)?
+    controller: PostsController@getPosts
+  -
+    method: POST
+    pattern: /posts/
+    controller: PostsController@getPostsFromPagination
+  -
+    method: GET
+    pattern: /post/(\d+)
+    controller: PostController@getPost
+  -
+    method: POST
+    pattern: /post/(\d+)
+    controller: CommentController@addComment
   -
     method: GET
     pattern: /login
@@ -24,18 +40,6 @@ routes:
     method: POST
     pattern: /signup
     controller: Auth\SignupSubmitController@signupSubmit
-  -
-    method: GET
-    pattern: /posts(/\d+)?
-    controller: PostsController@getPosts
-  -
-    method: POST
-    pattern: /posts/
-    controller: PostsController@getPostsFromPagination
-  -
-    method: GET
-    pattern: /post(/\d+)
-    controller: PostController@getPost
 middlewares:
   -
     method: GET|POST

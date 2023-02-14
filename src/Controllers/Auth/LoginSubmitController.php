@@ -13,8 +13,12 @@ class LoginSubmitController extends Controller
     {
         $authService = new AuthService(new UserModel(), $this->session);
 
+        if (!isset($_POST['email'], $_POST['password'])) {
+            $this->badRequest();
+        }
+
         if ($authService->loginUser($_POST['email'], $_POST['password'])) {
-            header("Location: /");
+            exit(header("Location: /"));
         }
 
         $this->render('layouts/login.html.twig');

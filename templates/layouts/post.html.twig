@@ -8,11 +8,17 @@
             <p class="post-meta">
                 Posted by <span class="author">{{ post.authorName }}</span>
                 on {{ post.creation_date|date("F j, Y") }}
-                - Last modified on {{ post.last_modified|date("F j, Y") }}
+                - Last modified on {{ post.lastModified|date("F j, Y") }}
             </p>
             <div class="post-content">
                 {{ post.content|striptags('<b>,<p>')|raw }}
             </div>
         </div>
+        {% include('layouts/comments.html.twig') with
+            {
+                postId : post.postId,
+                comments
+            }
+           only %}
     </div>
 {% endblock %}

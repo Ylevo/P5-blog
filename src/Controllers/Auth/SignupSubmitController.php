@@ -13,8 +13,12 @@ class SignupSubmitController extends Controller
     {
         $authService = new AuthService(new UserModel(), $this->session);
 
+        if (!isset($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'])) {
+            $this->badRequest();
+        }
+
         if ($authService->signupUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'])) {
-            header('Location: /');
+            exit(header("Location: /"));
         }
 
         $this->render('layouts/signup.html.twig');

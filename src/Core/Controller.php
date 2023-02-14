@@ -22,4 +22,10 @@ abstract class Controller
     {
         echo $this->twig->render($template, $params);
     }
+
+    public function badRequest()
+    {
+        $this->session->addErrorMessage("Error 400 : bad request.");
+        exit(header("Location: /"));
+    }
 }
