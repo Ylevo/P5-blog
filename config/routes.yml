@@ -26,12 +26,12 @@ routes:
     controller: Auth\SignupSubmitController@signupSubmit
   -
     method: GET
-    pattern: /posts
-    controller: PostsController@getPosts
-  -
-    method: GET
     pattern: /posts(/\d+)?
     controller: PostsController@getPosts
+  -
+    method: POST
+    pattern: /posts/
+    controller: PostsController@getPostsFromPagination
   -
     method: GET
     pattern: /post(/\d+)
@@ -40,4 +40,4 @@ middlewares:
   -
     method: GET|POST
     pattern: /(login|signup)
-    callback: checkIfAlreadyLoggedIn
+    callback: checkIfLoggedIn

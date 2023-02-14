@@ -1,0 +1,57 @@
+{% if lastPage > 1 %}
+    <nav class="d-flex justify-content-center">
+        <form method="post" action="{{ action }}">
+            <ul class="pagination">
+                <li class="page-item {{ currentPage <= 1 ? 'disabled' }}">
+                    <a class="page-link" aria-label="Previous" href="{{ action ~ (currentPage - 1) }}">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link {{ currentPage <= 1 ? 'active' }}" href="{{ action ~ 1 }}">1</a>
+                </li>
+
+                {% if ((currentPage >= 5) and (lastPage >= 6)) and
+                    not((currentPage == 5) and (lastPage == 6))  %} {# 6 pages edge case, didn't find a workaround yet #}
+                    <li class="page-item">
+                        <input type="text" name="pageNumber[]" class="page-link" placeholder="..." />
+                    </li>
+                {% endif %}
+
+                {% set breakFromLoop = 0 %}
+
+                {% for i in range(((currentPage + 1) >= lastPage ? -3 : -2), 3)  if breakFromLoop < 5 %}
+
+                    {% if (currentPage + i) > 1 %}
+                        <li class="page-item">
+                            <a class="page-link {{ currentPage + i == currentPage ? 'active' }}" href="{{ action ~ (currentPage + i) }}">{{ (currentPage + i) }}</a>
+                        </li>
+                        {% set breakFromLoop = breakFromLoop + 1 %}
+                    {% endif %}
+
+                    {% if ((i == 2) and (breakFromLoop == 4)) or ((currentPage + i + 1) == lastPage) %}
+                        {% set breakFromLoop = 5 %}
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if (((lastPage - currentPage) >= 4) and (lastPage >= 6)) and
+                    not((currentPage == 2) and (lastPage == 6))  %} {# 6 pages edge case, didn't find a workaround yet #}
+                    <li class="page-item">
+                        <input type="text" name="pageNumber[]" class="page-link" placeholder="..." />
+                    </li>
+                {% endif %}
+
+                <li class="page-item">
+                    <a class="page-link {{ currentPage >= lastPage ? 'active' }}" href="{{ action ~ lastPage }}">{{ lastPage }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link {{ currentPage >= lastPage ? 'disabled' }}" aria-label="Next" href="{{ action ~ (currentPage + 1) }}">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+                <input type="submit" hidden />
+            </ul>
+        </form>
+    </nav>
+{% endif %}
