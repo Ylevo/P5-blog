@@ -45,6 +45,18 @@ routes:
     method: GET
     pattern: /admin
     controller: Admin\AdminDashboardController@dashboard
+  -
+    method: GET
+    pattern: /admin/users
+    controller: Admin\AdminUsersListController@usersList
+  -
+    method: POST
+    pattern: /admin/users/update
+    controller: Admin\AdminUpdateUserController@updateUserRole
+  -
+    method: POST
+    pattern: /admin/users/delete
+    controller: Admin\AdminDeleteUserController@deleteUser
 middlewares:
   -
     method: GET|POST
@@ -52,5 +64,5 @@ middlewares:
     callback: checkIfLoggedIn
   -
     method: GET|POST
-    pattern: /admin
+    pattern: /(admin|admin/.*)
     callback: checkIfAdmin

@@ -284,7 +284,86 @@ p.not-found {
   text-decoration: underline;
 }
 
+/* Admin Tables */
 
+td form {
+  display: inline-block;
+}
+
+td select {
+  width: 100%
+}
+
+.table-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+
+.table-btn  + .table-btn  {
+  margin-left: 5px;
+}
+
+.btn-edit {
+  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  background-repeat: repeat-x;
+  text-shadow: 0 1px 0 #fff;
+  border-color: #ccc;
+  transition: none;
+  color: #333;
+}
+
+.btn-edit:hover {
+  background-color: #e0e0e0;
+  background-position: 0 -15px;
+  color: #333;
+  border-color: #adadad;
+}
+
+.btn-edit:active {
+  background-color: #e0e0e0;
+  border-color: #dbdbdb;
+  background-image: none;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  outline: 0;
+}
+
+.btn-edit:focus {
+  background-color: #e0e0e0;
+  color: #333;
+  border-color: #8c8c8c;
+}
+
+.btn-delete {
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+  background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+  background-repeat: repeat-x;
+  border-color: #b92c28;
+  transition: none;
+  color: white;
+}
+
+.btn-delete:active {
+  background-color: #c12e2a;
+  background-position: 0 -15px;
+  color: #fff;
+  border-color: #ac2925;
+}
+
+.btn-delete:hover {
+  background-color: #c12e2a;
+  border-color: #b92c28;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  color: #fff;
+}
+
+.btn-delete:focus {
+  box-shadow: none;
+  --bs-btn-focus-shadow-rgb: none;
+}
 
 
 
