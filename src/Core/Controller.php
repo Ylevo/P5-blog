@@ -28,4 +28,13 @@ abstract class Controller
         $this->session->addErrorMessage("Error 400 : bad request.");
         exit(header("Location: /"));
     }
+
+    public function getPaginationPage() : int
+    {
+        if (!isset($_POST['pageNumber'])) {
+            $this->badRequest();
+        }
+
+        return (int) empty($_POST['pageNumber'][0]) ? $_POST['pageNumber'][1] : $_POST['pageNumber'][0];
+    }
 }

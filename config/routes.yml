@@ -47,8 +47,12 @@ routes:
     controller: Admin\AdminDashboardController@dashboard
   -
     method: GET
-    pattern: /admin/users
-    controller: Admin\AdminUsersListController@usersList
+    pattern: /admin/users(/\d+)?
+    controller: Admin\AdminUsersListController@getUsers
+  -
+    method: POST
+    pattern: /admin/users/
+    controller: Admin\AdminUsersListController@getUsersFromPagination
   -
     method: POST
     pattern: /admin/users/update
@@ -57,6 +61,34 @@ routes:
     method: POST
     pattern: /admin/users/delete
     controller: Admin\AdminDeleteUserController@deleteUser
+  -
+    method: GET
+    pattern: /admin/posts(/\d+)?
+    controller: Admin\AdminPostsListController@getPosts
+  -
+    method: POST
+    pattern: /admin/posts/
+    controller: Admin\AdminPostsListController@getPostsFromPagination
+  -
+    method: GET
+    pattern: /admin/posts/new
+    controller: admin\AdminPostFormController@newPostForm
+  -
+    method: POST
+    pattern: /admin/posts/new
+    controller: admin\AdminCreatePostController@createPost
+  -
+    method: GET
+    pattern: /admin/posts/edit(/\d+)
+    controller: admin\AdminPostFormController@updatePostForm
+  -
+    method: POST
+    pattern: /admin/posts/edit
+    controller: admin\AdminUpdatePostController@updatePost
+  -
+    method: POST
+    pattern: /admin/posts/delete
+    controller: Admin\AdminDeletePostController@deletePost
 middlewares:
   -
     method: GET|POST

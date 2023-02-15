@@ -19,7 +19,7 @@ class CommentController extends Controller
 
         $postId = (int)$_POST['postId'];
         $commentService = new CommentService(new CommentModel(), $this->session);
-        $commentService->addComment($postId, $_POST['commentContent']);
+        $commentService->createComment($postId, $_POST['commentContent']);
         $postData = (new PostService(new PostModel()))->getSinglePost($postId);
         $commentsData = $commentService->getComments($postId);
 

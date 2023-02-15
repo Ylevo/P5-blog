@@ -25,10 +25,10 @@ class CommentService
         }, $this->commentModel->getComments($postId));
     }
 
-    public function addComment(int $postId, string $commentContent) : void
+    public function createComment(int $postId, string $commentContent) : void
     {
         if ($this->session->get('userId')) {
-            $this->commentModel->addComment(
+            $this->commentModel->createComment(
                 $postId,
                 $this->session->get('userId'),
                 $commentContent,

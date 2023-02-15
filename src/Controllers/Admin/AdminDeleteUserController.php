@@ -12,7 +12,7 @@ class AdminDeleteUserController extends Controller
     public function deleteUser()
     {
         (new UserService(new UserModel()))->deleteUser((int)$_POST['userId']);
-        $this->session->addErrorMessage("User with the id " . $_POST['userId'] . " successfully deleted.");
+        $this->session->addErrorMessage("User with the id {$_POST['userId']} successfully deleted.");
         exit(header("Location: /admin/users"));
     }
 

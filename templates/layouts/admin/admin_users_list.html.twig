@@ -37,7 +37,7 @@
                                             <span class="fa fa-pencil"></span>
                                         </button>
                                     </form>
-                                    <form method="POST" action="/admin/users/delete">
+                                    <form method="POST" action="/admin/users/delete" onsubmit="return confirm('Do you really want to delete this user?');">
                                         <input type="hidden" name="userId" value="{{ user.userId }}"/>
                                         <button type="submit" class="btn btn-danger table-btn btn-delete">
                                             <span class="fa fa-trash"></span>
@@ -52,4 +52,11 @@
             </div>
         </div>
     </div>
+    {% include('layouts/pagination.html.twig') with
+        {
+            action : '/admin/users/',
+            currentPage,
+            lastPage
+        }
+        only %}
 {% endblock %}

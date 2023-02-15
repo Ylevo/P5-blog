@@ -18,7 +18,7 @@ class CommentModel extends Model
                  ', [$postId])->fetchAll();
     }
 
-    public function addComment(int $postId, int $userId, string $content, string $creationDate, bool $validated)
+    public function createComment(int $postId, int $userId, string $content, string $creationDate, bool $validated)
     {
         $this->database->run("INSERT INTO comment (post_id, user_id, content, creation_date, validated) 
                                      VALUES (?, ?, ?, ?, ?)",

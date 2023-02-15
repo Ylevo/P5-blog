@@ -286,6 +286,14 @@ p.not-found {
 
 /* Admin Tables */
 
+.table-responsive thead {
+  font-size: 18px;
+}
+
+.table-responsive tbody {
+  font-size: 16px;
+}
+
 td form {
   display: inline-block;
 }

@@ -33,4 +33,31 @@ class PostService
 
         return $postData ? new Post($postData) : exit(header("Location: /404"));
     }
+
+    public function createPost(array $postData) : void
+    {
+        $newPost = new Post($postData);
+        $this->postModel->createPost(
+            $newPost->getUserId(),
+            $newPost->getTitle(),
+            $newPost->getLede(),
+            $newPost->getContent(),
+            date('Y-m-d H:i:s'));
+    }
+
+    public function updatePost(array $postData) : void
+    {
+        $updatedPost = new Post($postData);
+        $this->postModel->updatePost(
+            $updatedPost->getPostId(),
+            $updatedPost->getTitle(),
+            $updatedPost->getLede(),
+            $updatedPost->getContent(),
+            date('Y-m-d H:i:s'));
+    }
+
+    public function deletePost(int $postId) : void
+    {
+        $this->postModel->deletePost($postId);
+    }
 }
