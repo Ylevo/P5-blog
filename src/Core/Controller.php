@@ -35,6 +35,6 @@ abstract class Controller
             $this->badRequest();
         }
 
-        return (int) empty($_POST['pageNumber'][0]) ? $_POST['pageNumber'][1] : $_POST['pageNumber'][0];
+        return empty($_POST['pageNumber'][0]) ? (int)$_POST['pageNumber'][1] : (int)$_POST['pageNumber'][0];
     }
 }

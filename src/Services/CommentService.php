@@ -43,7 +43,7 @@ class CommentService
     {
         $data['lastPage'] = (int) ceil($this->commentModel->getUnvalidatedCommentsCount() / $commentsPerPage);
         $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
-        $offset = $page > 1 ? ($page - 1) * $commentsPerPage : 0;
+        $offset = $data['currentPage'] > 1 ? ($data['currentPage'] - 1) * $commentsPerPage : 0;
         $data['comments'] =  array_map(function($comment){
             return new Comment($comment);
         }, $this->commentModel->getUnvalidatedComments($offset, $commentsPerPage));

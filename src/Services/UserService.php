@@ -18,9 +18,9 @@ class UserService
     public function getPaginatedUsers(int $page = 1, int $usersPerPage = 5) : array
     {
         $data['lastPage'] = (int) ceil($this->userModel->getUsersCount() / $usersPerPage);
-        $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
         $data['roles'] = $this->userModel->getUserRoles();
-        $offset = $page > 1 ? ($page - 1) * $usersPerPage : 0;
+        $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
+        $offset = $data['currentPage'] > 1 ? ($data['currentPage'] - 1) * $usersPerPage : 0;
         $usersArray = $this->userModel->getUsers($offset, $usersPerPage);
         $data['users'] = array_map(function($user){
             return new User($user);
