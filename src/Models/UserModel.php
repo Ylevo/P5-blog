@@ -34,10 +34,8 @@ class UserModel extends Model
         return (bool) $stmt->fetchColumn();
     }
 
-    public function getUsers(int $page, int $usersPerPage) : array
+    public function getUsers(int $offset, int $usersPerPage) : array
     {
-        $offset = $page > 1 ? ($page - 1) * $usersPerPage : 0;
-
         return $this->database->run(
             'SELECT user_id, email, user_role, first_name, last_name
                  FROM user

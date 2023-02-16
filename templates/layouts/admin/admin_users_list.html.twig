@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+    <script src="/js/admin.js"></script>
+{% endblock %}
+
 {% block body %}
     <div class="row">
         <div class="col-md-10 col-lg-8 m-auto">
@@ -19,6 +23,7 @@
                     <tbody>
                     {% for user in users %}
                         <tr>
+                            <td class="hidden"><form id="{{ user.userId }}" method="POST"></form></td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.firstName }}</td>
                             <td>{{ user.LastName }}</td>
@@ -31,18 +36,18 @@
                             </td>
                             <td class="text-center">
                                 {% if user.userId != session.userId %}
-                                    <form id="{{ user.userId }}" method="POST" action="/admin/users/update">
-                                        <input type="hidden" name="userId" value="{{ user.userId }}"/>
-                                        <button type="submit" class="btn btn-default table-btn btn-edit">
-                                            <span class="fa fa-pencil"></span>
-                                        </button>
-                                    </form>
-                                    <form method="POST" action="/admin/users/delete" onsubmit="return confirm('Do you really want to delete this user?');">
-                                        <input type="hidden" name="userId" value="{{ user.userId }}"/>
-                                        <button type="submit" class="btn btn-danger table-btn btn-delete">
-                                            <span class="fa fa-trash"></span>
-                                        </button>
-                                    </form>
+                                    <input type="hidden" form="{{ user.userId }}" name="userId" value="{{ user.userId }}"/>
+                                    <button type="submit" formaction="/admin/users/update"
+                                            form="{{ user.userId }}"
+                                            class="btn btn-default table-btn btn-edit">
+                                        <span class="fa fa-pencil"></span>
+                                    </button>
+                                    <button type="submit"
+                                            formaction="/admin/users/delete"
+                                            form="{{ user.userId }}"
+                                            class="btn btn-danger table-btn btn-delete">
+                                        <span class="fa fa-trash"></span>
+                                    </button>
                                 {% endif %}
                             </td>
                         </tr>

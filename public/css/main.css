@@ -294,6 +294,10 @@ p.not-found {
   font-size: 16px;
 }
 
+td.hidden {
+  display:none;
+}
+
 td form {
   display: inline-block;
 }
@@ -371,6 +375,34 @@ td select {
 .btn-delete:focus {
   box-shadow: none;
   --bs-btn-focus-shadow-rgb: none;
+}
+
+/* Admin comments */
+
+.admin-validate-comment {
+  margin-left : auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.admin-validate-comment label {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.admin-validate-comment label, .admin-validate-comment input {
+  cursor: pointer;
+}
+
+.admin-validate-comment input {
+  margin-top: .35em;
+}
+
+.admin-comments-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 10px;
 }
 
 

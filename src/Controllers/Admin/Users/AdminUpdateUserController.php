@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Admin\Users;
 
 use App\Core\Controller;
 use App\Models\UserModel;

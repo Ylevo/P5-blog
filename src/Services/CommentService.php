@@ -38,4 +38,27 @@ class CommentService
             $this->session->addErrorMessage("You must be logged in to post a comment.");
         }
     }
+
+    public function getPaginatedUnvalidatedComments(int $page = 1, int $commentsPerPage = 15) : array
+    {
+        $data['lastPage'] = (int) ceil($this->commentModel->getUnvalidatedCommentsCount() / $commentsPerPage);
+        $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
+        $offset = $page > 1 ? ($page - 1) * $commentsPerPage : 0;
+        $data['comments'] =  array_map(function($comment){
+            return new Comment($comment);
+        }, $this->commentModel->getUnvalidatedComments($offset, $commentsPerPage));
+
+        return $data;
+    }
+
+    public function validateComments(array $commentsIds)
+    {
+        $this->commentModel->validateComments($commentsIds);
+
+    }
+
+    public function deleteComments(array $commentsIds)
+    {
+        $this->commentModel->deleteComments($commentsIds);
+    }
 }

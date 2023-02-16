@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    <script src="/js/admin.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 m-auto">
+            <h2 class="text-center">Users</h2>
+            <hr>
+            <form id="commentsForm" method="POST">
+                {% for comment in comments %}
+                    <div class="comment">
+                        <div class="d-flex flex-row align-items-center comment-header">
+                            <div class="comment-author">{{ comment.authorName }}</div>
+                            <div class="comment-dot"></div>
+                            <div class="comment-date">{{ comment.creationDate|date("F j, Y") }}</div>
+                            <div class="admin-validate-comment">
+                                <label class="form-check-label" for="{{ comment.commentId }}">Select comment </label>
+                                <input id="{{ comment.commentId }}" name="comments[]" value="{{ comment.commentId }}" class="form-check-input" type="checkbox"/>
+                            </div>
+                        </div>
+                        <div class="comment-content"><span>{{ comment.content }}</span></div>
+                    </div>
+                {% endfor %}
+                <hr>
+            </form>
+                <div class="admin-validate-comment text-end">
+                    <label class="form-check-label" for="selectAll">Select all comments </label>
+                    <input class="form-check-input" type="checkbox" id="selectAll"/>
+                </div>
+                <br>
+                <div class="admin-comments-buttons text-end ">
+                    <button class="btn btn-success" formaction="/admin/comments/validate" form="commentsForm" type="submit">Validate</button>
+                    <button class="btn btn-danger" formaction="/admin/comments/delete" form="commentsForm" type="submit">Delete</button>
+                </div>
+
+        </div>
+    </div>
+    {% include('layouts/pagination.html.twig') with
+        {
+            action : '/admin/comments/',
+            currentPage,
+            lastPage
+        }
+        only %}
+{% endblock %}
+

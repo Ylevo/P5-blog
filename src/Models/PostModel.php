@@ -7,10 +7,8 @@ use App\Core\Model;
 
 class PostModel extends Model
 {
-    public function getPosts(int $page, int $postsPerPage) : array
+    public function getPosts(int $offset, int $postsPerPage) : array
     {
-        $offset = $page > 1 ? ($page - 1) * $postsPerPage : 0;
-
         return $this->database->run(
             'SELECT post_id, title, lede, creation_date, last_modified_date, CONCAT(first_name, " ", last_name) as author_name
                  FROM post

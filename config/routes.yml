@@ -48,47 +48,63 @@ routes:
   -
     method: GET
     pattern: /admin/users(/\d+)?
-    controller: Admin\AdminUsersListController@getUsers
+    controller: Admin\Users\AdminUsersListController@getUsers
   -
     method: POST
     pattern: /admin/users/
-    controller: Admin\AdminUsersListController@getUsersFromPagination
+    controller: Admin\Users\AdminUsersListController@getUsersFromPagination
   -
     method: POST
     pattern: /admin/users/update
-    controller: Admin\AdminUpdateUserController@updateUserRole
+    controller: Admin\Users\AdminUpdateUserController@updateUserRole
   -
     method: POST
     pattern: /admin/users/delete
-    controller: Admin\AdminDeleteUserController@deleteUser
+    controller: Admin\Users\AdminDeleteUserController@deleteUser
   -
     method: GET
     pattern: /admin/posts(/\d+)?
-    controller: Admin\AdminPostsListController@getPosts
+    controller: Admin\Posts\AdminPostsListController@getPosts
   -
     method: POST
     pattern: /admin/posts/
-    controller: Admin\AdminPostsListController@getPostsFromPagination
+    controller: Admin\Posts\AdminPostsListController@getPostsFromPagination
   -
     method: GET
     pattern: /admin/posts/new
-    controller: admin\AdminPostFormController@newPostForm
+    controller: Admin\Posts\AdminPostFormController@newPostForm
   -
     method: POST
     pattern: /admin/posts/new
-    controller: admin\AdminCreatePostController@createPost
+    controller: Admin\Posts\AdminCreatePostController@createPost
   -
     method: GET
     pattern: /admin/posts/edit(/\d+)
-    controller: admin\AdminPostFormController@updatePostForm
+    controller: Admin\Posts\AdminPostFormController@updatePostForm
   -
     method: POST
     pattern: /admin/posts/edit
-    controller: admin\AdminUpdatePostController@updatePost
+    controller: Admin\Posts\AdminUpdatePostController@updatePost
   -
     method: POST
     pattern: /admin/posts/delete
-    controller: Admin\AdminDeletePostController@deletePost
+    controller: Admin\Posts\AdminDeletePostController@deletePost
+  -
+    method: GET
+    pattern: /admin/comments(/\d+)?
+    controller: Admin\Comments\AdminCommentsListController@getComments
+  -
+    method: POST
+    pattern: /admin/comments/
+    controller: Admin\Comments\AdminCommentsListController@getCommentsFromPagination
+  -
+    method: POST
+    pattern: /admin/comments/validate
+    controller: Admin\Comments\AdminValidateCommentsController@validateComments
+  -
+    method: POST
+    pattern: /admin/comments/delete
+    controller: Admin\Comments\AdminDeleteCommentsController@deleteComments
 middlewares:
   -
     method: GET|POST

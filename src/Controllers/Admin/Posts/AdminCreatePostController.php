@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Admin\Posts;
 
 use App\Core\Controller;
 use App\Models\PostModel;

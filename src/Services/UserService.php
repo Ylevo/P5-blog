@@ -20,7 +20,8 @@ class UserService
         $data['lastPage'] = (int) ceil($this->userModel->getUsersCount() / $usersPerPage);
         $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
         $data['roles'] = $this->userModel->getUserRoles();
-        $usersArray = $this->userModel->getUsers($data['currentPage'], $usersPerPage);
+        $offset = $page > 1 ? ($page - 1) * $usersPerPage : 0;
+        $usersArray = $this->userModel->getUsers($offset, $usersPerPage);
         $data['users'] = array_map(function($user){
             return new User($user);
         }, $usersArray);

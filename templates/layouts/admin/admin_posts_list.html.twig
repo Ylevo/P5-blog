@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+    <script src="/js/admin.js"></script>
+{% endblock %}
+
 {% block body %}
     <div class="row">
         <div class="col-md-10 col-lg-8 m-auto">
@@ -27,7 +31,7 @@
                                 <a href="/admin/posts/edit/{{ post.postId }}" class="btn btn-default table-btn btn-edit">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <form method="POST" action="/admin/posts/delete" onsubmit="return confirm('Do you really want to delete this post?');">
+                                <form method="POST" action="/admin/posts/delete">
                                     <input type="hidden" name="postId" value="{{ post.postId }}"/>
                                     <button type="submit" class="btn btn-danger table-btn btn-delete">
                                         <span class="fa fa-trash"></span>

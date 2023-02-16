@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use Exception;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -42,6 +43,21 @@ class Database
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($args);
         return $stmt;
+    }
+
+    public function runTransaction(string $sql, array $argsArray) : void
+    {
+        try {
+            $this->pdo->beginTransaction();
+            $stmt = $this->pdo->prepare($sql);
+            foreach ($argsArray as $args) {
+                $stmt->execute([$args]);
+            }
+            $this->pdo->commit();
+        } catch (Exception $e) {
+            $this->pdo->rollback();
+            throw $e;
+        }
     }
 }
 

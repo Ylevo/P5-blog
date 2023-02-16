@@ -19,7 +19,8 @@ class PostService
     {
         $data['lastPage'] = (int) ceil($this->postModel->getPostsCount() / $postsPerPage);
         $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
-        $postsArray = $this->postModel->getPosts($data['currentPage'], $postsPerPage);
+        $offset = $page > 1 ? ($page - 1) * $postsPerPage : 0;
+        $postsArray = $this->postModel->getPosts($offset, $postsPerPage);
         $data['posts'] = array_map(function($post){
             return new Post($post);
         }, $postsArray);
