@@ -41,8 +41,76 @@ routes:
     method: POST
     pattern: /signup
     controller: Auth\SignupSubmitController@signupSubmit
+  -
+    method: GET
+    pattern: /admin
+    controller: Admin\AdminDashboardController@dashboard
+  -
+    method: GET
+    pattern: /admin/users(/\d+)?
+    controller: Admin\Users\AdminUsersListController@getUsers
+  -
+    method: POST
+    pattern: /admin/users/
+    controller: Admin\Users\AdminUsersListController@getUsersFromPagination
+  -
+    method: POST
+    pattern: /admin/users/update
+    controller: Admin\Users\AdminUpdateUserController@updateUserRole
+  -
+    method: POST
+    pattern: /admin/users/delete
+    controller: Admin\Users\AdminDeleteUserController@deleteUser
+  -
+    method: GET
+    pattern: /admin/posts(/\d+)?
+    controller: Admin\Posts\AdminPostsListController@getPosts
+  -
+    method: POST
+    pattern: /admin/posts/
+    controller: Admin\Posts\AdminPostsListController@getPostsFromPagination
+  -
+    method: GET
+    pattern: /admin/posts/new
+    controller: Admin\Posts\AdminPostFormController@newPostForm
+  -
+    method: POST
+    pattern: /admin/posts/new
+    controller: Admin\Posts\AdminCreatePostController@createPost
+  -
+    method: GET
+    pattern: /admin/posts/edit(/\d+)
+    controller: Admin\Posts\AdminPostFormController@updatePostForm
+  -
+    method: POST
+    pattern: /admin/posts/edit
+    controller: Admin\Posts\AdminUpdatePostController@updatePost
+  -
+    method: POST
+    pattern: /admin/posts/delete
+    controller: Admin\Posts\AdminDeletePostController@deletePost
+  -
+    method: GET
+    pattern: /admin/comments(/\d+)?
+    controller: Admin\Comments\AdminCommentsListController@getComments
+  -
+    method: POST
+    pattern: /admin/comments/
+    controller: Admin\Comments\AdminCommentsListController@getCommentsFromPagination
+  -
+    method: POST
+    pattern: /admin/comments/validate
+    controller: Admin\Comments\AdminValidateCommentsController@validateComments
+  -
+    method: POST
+    pattern: /admin/comments/delete
+    controller: Admin\Comments\AdminDeleteCommentsController@deleteComments
 middlewares:
   -
     method: GET|POST
     pattern: /(login|signup)
     callback: checkIfLoggedIn
+  -
+    method: GET|POST
+    pattern: /(admin|admin/.*)
+    callback: checkIfAdmin

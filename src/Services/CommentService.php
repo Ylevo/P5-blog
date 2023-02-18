@@ -25,12 +25,40 @@ class CommentService
         }, $this->commentModel->getComments($postId));
     }
 
-    public function addComment(int $postId, string $commentContent) : void
+    public function createComment(int $postId, string $commentContent) : void
     {
         if ($this->session->get('userId')) {
-            $this->commentModel->addComment($postId, $this->session->get('userId'), $commentContent, date('Y-m-d H:i:s'), false);
+            $this->commentModel->createComment(
+                $postId,
+                $this->session->get('userId'),
+                $commentContent,
+                date('Y-m-d H:i:s'),
+                $this->session->get('userRole') == 'Admin');
         } else {
             $this->session->addErrorMessage("You must be logged in to post a comment.");
         }
+    }
+
+    public function getPaginatedUnvalidatedComments(int $page = 1, int $commentsPerPage = 15) : array
+    {
+        $data['lastPage'] = (int) ceil($this->commentModel->getUnvalidatedCommentsCount() / $commentsPerPage);
+        $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
+        $offset = $data['currentPage'] > 1 ? ($data['currentPage'] - 1) * $commentsPerPage : 0;
+        $data['comments'] =  array_map(function($comment){
+            return new Comment($comment);
+        }, $this->commentModel->getUnvalidatedComments($offset, $commentsPerPage));
+
+        return $data;
+    }
+
+    public function validateComments(array $commentsIds)
+    {
+        $this->commentModel->validateComments($commentsIds);
+
+    }
+
+    public function deleteComments(array $commentsIds)
+    {
+        $this->commentModel->deleteComments($commentsIds);
     }
 }

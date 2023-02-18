@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Core;
 
 
+use ReflectionMethod;
+
 class Entity
 {
     public function __construct(array $data = null)
@@ -19,6 +21,8 @@ class Entity
             $propertyName = str_replace('_', '', ucwords($propertyName, '_'));
             $methodName = "set$propertyName";
             if (method_exists($this, $methodName)) {
+                $paramType = (new ReflectionMethod($this, $methodName))->getParameters()[0]->getType()->getName();
+                settype($value, $paramType);
                 $this->{$methodName}($value);
             }
         }

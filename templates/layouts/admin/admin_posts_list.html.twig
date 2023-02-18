@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    <script src="/js/admin.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 m-auto">
+            <h2 class="text-center">Posts</h2>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Creation Date</th>
+                        <th>Last Modified</th>
+                        <th class="text-center"><span class="fa fa-cog"></span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <td>{{ post.title }}</td>
+                            <td>{{ post.authorName }}</td>
+                            <td>{{ post.creationDate|date("d/m/y") }}</td>
+                            <td>{{ post.lastModified|date("d/m/y") }}</td>
+                            <td class="text-center">
+                                <a href="/admin/posts/edit/{{ post.postId }}" class="btn btn-default table-btn btn-edit">
+                                    <span class="fa fa-pencil"></span>
+                                </a>
+                                <form method="POST" action="/admin/posts/delete">
+                                    <input type="hidden" name="postId" value="{{ post.postId }}"/>
+                                    <button type="submit" class="btn btn-danger table-btn btn-delete">
+                                        <span class="fa fa-trash"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% include('layouts/pagination.html.twig') with
+        {
+            action : '/admin/posts/',
+            currentPage,
+            lastPage
+        }
+        only %}
+{% endblock %}

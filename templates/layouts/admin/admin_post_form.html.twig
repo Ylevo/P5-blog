@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto">
+            <h2 class="text-center">{{ postActionTitle }}</h2>
+            <hr>
+            <form id="contactForm" name="sentMessage" method="POST" action="{{ postAction }}">
+                <input type="hidden" name="postId" value="{{ post.postId }}">
+                <input type="hidden" name="userId" value="{{ session.userId }}">
+                <div class="control-group">
+                    <div class="form-floating controls mb-3">
+                        <input class="form-control" type="text" id="title" name="title" value="{{ post.title }}" required="" placeholder="Title">
+                        <label class="form-label" for="title">Title</label>
+                        <small class="form-text text-danger help-block"></small>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-floating controls mb-3">
+                        <input class="form-control" type="text" id="lede" name="lede" value="{{ post.lede }}" required="" placeholder="Lede">
+                        <label class="form-label" for="lede">Lede</label>
+                        <small class="form-text text-danger help-block"></small>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-floating controls mb-3">
+                        <textarea class="form-control" id="content" name="content" data-validation-required-message="A post needs a content." required="" placeholder="Post Content" style="height: 150px;">{{ post.content }}</textarea>
+                        <label class="form-label">Content</label>
+                        <small class="form-text text-danger help-block"></small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" id="sendMessageButton" type="submit">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -11,6 +11,5 @@ abstract class Model
     public function __construct()
     {
        $this->database = new Database('blog', 'root'); // fichier config à faire charger ici plus tard
-
     }
 }

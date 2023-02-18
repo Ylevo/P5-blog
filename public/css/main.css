@@ -27,6 +27,18 @@ header.masthead .site-heading {
   padding-top: 100px;
 }
 
+.dashboard-footer-link {
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 9px;
+}
+
+p.copyright {
+  margin-top: 12px;
+}
+
+
 /* Login form */
 
 #login-box {
@@ -254,7 +266,144 @@ p.not-found {
   text-align: center;
 }
 
+/* Admin dashboard */
 
+.dashboard-borders {
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, gray, rgba(0, 0, 0, 0)) 1 100%;
+}
+
+.dashboard-menu-header {
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.dashboard-menu a {
+  text-decoration: underline;
+}
+
+/* Admin Tables */
+
+.table-responsive thead {
+  font-size: 18px;
+}
+
+.table-responsive tbody {
+  font-size: 16px;
+}
+
+td.hidden {
+  display:none;
+}
+
+td form {
+  display: inline-block;
+}
+
+td select {
+  width: 100%
+}
+
+.table-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+
+.table-btn  + .table-btn  {
+  margin-left: 5px;
+}
+
+.btn-edit {
+  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  background-repeat: repeat-x;
+  text-shadow: 0 1px 0 #fff;
+  border-color: #ccc;
+  transition: none;
+  color: #333;
+}
+
+.btn-edit:hover {
+  background-color: #e0e0e0;
+  background-position: 0 -15px;
+  color: #333;
+  border-color: #adadad;
+}
+
+.btn-edit:active {
+  background-color: #e0e0e0;
+  border-color: #dbdbdb;
+  background-image: none;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  outline: 0;
+}
+
+.btn-edit:focus {
+  background-color: #e0e0e0;
+  color: #333;
+  border-color: #8c8c8c;
+}
+
+.btn-delete {
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+  background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+  background-repeat: repeat-x;
+  border-color: #b92c28;
+  transition: none;
+  color: white;
+}
+
+.btn-delete:active {
+  background-color: #c12e2a;
+  background-position: 0 -15px;
+  color: #fff;
+  border-color: #ac2925;
+}
+
+.btn-delete:hover {
+  background-color: #c12e2a;
+  border-color: #b92c28;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  color: #fff;
+}
+
+.btn-delete:focus {
+  box-shadow: none;
+  --bs-btn-focus-shadow-rgb: none;
+}
+
+/* Admin comments */
+
+.admin-validate-comment {
+  margin-left : auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.admin-validate-comment label {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.admin-validate-comment label, .admin-validate-comment input {
+  cursor: pointer;
+}
+
+.admin-validate-comment input {
+  margin-top: .35em;
+}
+
+.admin-comments-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 10px;
+}
 
 
 

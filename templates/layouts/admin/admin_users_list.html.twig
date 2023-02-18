@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    <script src="/js/admin.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 m-auto">
+            <h2 class="text-center">Users</h2>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Role</th>
+                        <th class="text-center"><span class="fa fa-cog"></span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td class="hidden"><form id="{{ user.userId }}" method="POST"></form></td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.firstName }}</td>
+                            <td>{{ user.LastName }}</td>
+                            <td>
+                                <select name="userRole" form="{{ user.userId }}">
+                                    {% for role in roles %}
+                                        <option value="{{ role.label }}" {{ role.label == user.userRole ? "selected" }}>{{ role.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="text-center">
+                                {% if user.userId != session.userId %}
+                                    <input type="hidden" form="{{ user.userId }}" name="userId" value="{{ user.userId }}"/>
+                                    <button type="submit" formaction="/admin/users/update"
+                                            form="{{ user.userId }}"
+                                            class="btn btn-default table-btn btn-edit">
+                                        <span class="fa fa-pencil"></span>
+                                    </button>
+                                    <button type="submit"
+                                            formaction="/admin/users/delete"
+                                            form="{{ user.userId }}"
+                                            class="btn btn-danger table-btn btn-delete">
+                                        <span class="fa fa-trash"></span>
+                                    </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% include('layouts/pagination.html.twig') with
+        {
+            action : '/admin/users/',
+            currentPage,
+            lastPage
+        }
+        only %}
+{% endblock %}
