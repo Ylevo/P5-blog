@@ -20,6 +20,48 @@
                     <a href="/admin/comments">View comments</a>
                 </div>
             </div>
+            <div class="blog-custom">
+                <h2 class="text-center">Blog Customization</h2>
+                <hr/>
+                <div class="dashboard-menu-header custom-header">Social links and Header</div>
+                <form method="POST" action="/admin/customize/update">
+                    {% for contactInfo in getContactInfos() %}
+                        <div class="control-group">
+                            <div class="form-floating controls mb-3">
+                                <input id="{{ contactInfo.name }}" value="{{ contactInfo.url }}" name="{{ contactInfo.name }}" class="form-control" type="url" placeholder="{{ contactInfo.name|capitalize }}" />
+                                <label class="form-label" for="{{ contactInfo.name }}">{{ contactInfo.name|capitalize }}</label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="control-group">
+                        <div class="form-floating controls mb-3">
+                            <input id="headerTitle" value="{{ blogCustomization.header }}" name="header" class="form-control" type="text" placeholder="Header Name" />
+                            <label class="form-label" for="headerTitle">Header</label>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-floating controls mb-3">
+                            <input id="headerDescription" value="{{ blogCustomization.headerDescription }}" name="headerDescription" class="form-control" type="text" placeholder="Header Description" />
+                            <label class="form-label" for="headerDescription">Header Description</label>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-floating controls mb-3">
+                            <input id="cvUrl" value="{{ blogCustomization.cvUrl }}" name="cvUrl" class="form-control" type="url" placeholder="CV Link" />
+                            <label class="form-label" for="cvUrl">CV Link</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary d-block box-shadow" id="submit-id-submit" type="submit">Confirm Changes</button>
+                </form>
+                <div class="dashboard-menu-header custom-header">Logo/Avatar</div>
+                <form method="POST" action="admin/customize/avatar" enctype="multipart/form-data">
+                    <div class="logo admin-logo mb-3 mt-3"></div>
+                    <div class="mb-3">
+                        <input type="file" class="form-control" id="newAvatar" name="newAvatar" accept=".jpg,.jpeg,.png,.gif"/>
+                    </div>
+                    <button class="btn btn-primary d-block box-shadow" id="submit-upload" type="submit">Upload</button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

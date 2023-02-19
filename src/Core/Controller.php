@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Models\ContactInfoModel;
+use App\Services\BlogCustomizationService;
+use App\Services\ContactInfoService;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
 abstract class Controller
 {
@@ -16,6 +20,8 @@ abstract class Controller
         $this->session = new Session();
         $this->twig = new Environment(new FilesystemLoader('templates', getcwd().'/../'));
         $this->twig->addGlobal('session', $this->session);
+        $this->twig->addGlobal('blogCustomization', $this->getBlogCustomization());
+        $this->twig->addFunction(new TwigFunction('getContactInfos', [$this, 'getContactInfos']));
     }
 
     public function render($template, $params = []): void
@@ -31,10 +37,20 @@ abstract class Controller
 
     public function getPaginationPage() : int
     {
-        if (!isset($_POST['pageNumber'])) {
+        if (empty($_POST['pageNumber'])) {
             $this->badRequest();
         }
 
         return (int)(empty($_POST['pageNumber'][0]) ? $_POST['pageNumber'][1] : $_POST['pageNumber'][0]);
+    }
+
+    public function getContactInfos() : array
+    {
+        return (new ContactInfoService(new ContactInfoModel()))->getContactInfos();
+    }
+
+    public function getBlogCustomization() : array
+    {
+        return (new BlogCustomizationService($this->session))->getBlogCustomization();
     }
 }

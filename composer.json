@@ -13,11 +13,13 @@
     "bramus/router": "~1.6",
     "twig/twig": "^2.0",
     "ext-pdo": "*",
-    "ext-yaml": "*"
+    "ext-yaml": "*",
+    "ext-gd": "*"
   },
   "autoload": {
     "psr-4": {
       "App\\": "src"
-    }
+    },
+    "files": ["config/errorConfig.php"]
   }
 }

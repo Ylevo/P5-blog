@@ -3,12 +3,22 @@
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto">
                 <ul class="list-inline text-center">
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></li>
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li>
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+                    {% for contactInfo in getContactInfos() %}
+                    <li class="list-inline-item">
+                        <span class="fa-stack fa-lg">
+                            <a href="{{ contactInfo.url }}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-{{ contactInfo.name}} fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </span>
+                    </li>
+                    {% endfor %}
                 </ul>
+                <p class="footer-link">
+                    <a href="{{ blogCustomization.cvUrl }}">My CV</a>
+                </p>
                 {%  if session.isUserAdmin()  %}
-                <p class="dashboard-footer-link">
+                <p class="footer-link">
                     <a href="/admin">Admin Dashboard</a>
                 </p>
                 {% endif %}
