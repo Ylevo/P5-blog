@@ -105,6 +105,14 @@ routes:
     method: POST
     pattern: /admin/comments/delete
     controller: Admin\Comments\AdminDeleteCommentsController@deleteComments
+  -
+    method: POST
+    pattern: /admin/customize/update
+    controller: Admin\AdminUpdateCustomizationController@updateOptions
+  -
+    method: POST
+    pattern: /admin/customize/avatar
+    controller: Admin\AdminUpdateAvatarController@updateAvatar
 middlewares:
   -
     method: GET|POST

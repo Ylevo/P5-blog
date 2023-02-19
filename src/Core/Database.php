@@ -51,7 +51,7 @@ class Database
             $this->pdo->beginTransaction();
             $stmt = $this->pdo->prepare($sql);
             foreach ($argsArray as $args) {
-                $stmt->execute([$args]);
+                $stmt->execute(is_array($args) ? $args : [$args]);
             }
             $this->pdo->commit();
         } catch (Exception $e) {
