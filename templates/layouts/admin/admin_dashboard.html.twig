@@ -25,6 +25,8 @@
                 <hr/>
                 <div class="dashboard-menu-header custom-header">Social links and Header</div>
                 <form method="POST" action="/admin/customize/update">
+                    <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
+
                     {% for contactInfo in getContactInfos() %}
                         <div class="control-group">
                             <div class="form-floating controls mb-3">
@@ -33,6 +35,7 @@
                             </div>
                         </div>
                     {% endfor %}
+
                     <div class="control-group">
                         <div class="form-floating controls mb-3">
                             <input id="headerTitle" value="{{ blogCustomization.header }}" name="header" class="form-control" type="text" placeholder="Header Name" />
@@ -55,6 +58,7 @@
                 </form>
                 <div class="dashboard-menu-header custom-header">Logo/Avatar</div>
                 <form method="POST" action="admin/customize/avatar" enctype="multipart/form-data">
+                    <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
                     <div class="logo admin-logo mb-3 mt-3"></div>
                     <div class="mb-3">
                         <input type="file" class="form-control" id="newAvatar" name="newAvatar" accept=".jpg,.jpeg,.png,.gif"/>

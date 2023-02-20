@@ -1,6 +1,7 @@
 {% if lastPage > 1 %}
     <nav class="d-flex justify-content-center">
         <form method="post" action="{{ action }}">
+            <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
             <ul class="pagination">
                 <li class="page-item {{ currentPage <= 1 ? 'disabled' }}">
                     <a class="page-link" aria-label="Previous" href="{{ action ~ (currentPage - 1) }}">

@@ -6,6 +6,7 @@
             <h2 class="text-center">{{ postActionTitle }}</h2>
             <hr>
             <form id="contactForm" name="sentMessage" method="POST" action="{{ postAction }}">
+                <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
                 <input type="hidden" name="postId" value="{{ post.postId }}">
                 <input type="hidden" name="userId" value="{{ session.userId }}">
                 <div class="control-group">

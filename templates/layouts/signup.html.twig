@@ -6,6 +6,7 @@
             <h4>Sign up</h4>
         </div>
         <form id="login" method="post" action="/signup">
+            <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
             <div class="email-login">
                 <input type="text" name="firstName" class="email-input form-control" required="" placeholder="First Name" minlength="4">
                 <input type="text" name="lastName" class="email-input form-control" required="" placeholder="Last Name" minlength="4">
