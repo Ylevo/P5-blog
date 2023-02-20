@@ -122,3 +122,7 @@ middlewares:
     method: GET|POST
     pattern: /(admin|admin/.*)
     callback: checkIfAdmin
+  -
+    method: POST
+    pattern: /.*
+    callback: checkCSRFToken

@@ -8,6 +8,7 @@
                 <div class="d-flex flex-row add-comment-section mt-4 mb-4">
                     <textarea required class="form-control comment-input" name="commentContent" minlength="5" maxlength="600" placeholder="Add comment"></textarea>
                     <button class="btn btn-primary comment-submit" type="submit">Comment</button>
+                    <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
                     <input type="hidden" name="postId" value="{{ postId }}"/>
                 </div>
             </form>

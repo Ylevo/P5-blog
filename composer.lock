@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "290aa2d61e94872a8028afb487e0fefa",
+    "content-hash": "28bf4c05f86e6752fe222ed383401b53",
     "packages": [
         {
             "name": "bramus/router",
@@ -371,7 +371,8 @@
     "platform": {
         "ext-pdo": "*",
         "ext-yaml": "*",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-openssl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

@@ -20,6 +20,7 @@ abstract class Controller
         $this->session = new Session();
         $this->twig = new Environment(new FilesystemLoader('templates', getcwd().'/../'));
         $this->twig->addGlobal('session', $this->session);
+        $this->twig->addGlobal('CSRFToken', $_SESSION['CSRFToken']);
         $this->twig->addGlobal('blogCustomization', $this->getBlogCustomization());
         $this->twig->addFunction(new TwigFunction('getContactInfos', [$this, 'getContactInfos']));
     }
@@ -53,4 +54,6 @@ abstract class Controller
     {
         return (new BlogCustomizationService($this->session))->getBlogCustomization();
     }
+
+
 }
