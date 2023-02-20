@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 
+use App\Core\MessageType;
 use App\Core\Session;
 
 class BlogCustomizationService
@@ -33,7 +34,7 @@ class BlogCustomizationService
         $ext = pathinfo($uploadedFile['name'], PATHINFO_EXTENSION);
 
         if ($fileSize >= 2000000) {
-            $this->session->addErrorMessage("Error : could not upload new avatar - file size is over 2 MB.");
+            $this->session->addMessage("Error : could not upload new avatar - file size is over 2 MB.", MessageType::Error);
             return false;
         }
 
@@ -45,11 +46,11 @@ class BlogCustomizationService
         };
 
         if (!is_uploaded_file($fileTmpName) || !$newImg || !imagepng($newImg, $uploadPath)) {
-            $this->session->addErrorMessage("Error : could not upload new avatar - incompatible file type.");
+            $this->session->addMessage("Error : could not upload new avatar - incompatible file type.", MessageType::Error);
             return false;
         }
 
-        $this->session->addErrorMessage("New avatar successfully uploaded.");
+        $this->session->addMessage("New avatar successfully uploaded.", MessageType::Success);
         return true;
     }
 

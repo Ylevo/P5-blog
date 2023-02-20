@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Core\MessageType;
 use App\Core\Session;
 use App\Models\UserModel;
 
@@ -26,7 +27,7 @@ class AuthService
             $this->session->set(('userId'), $user);
             $this->session->set(('userRole'), 'Member');
         } else {
-            $this->session->addErrorMessage('Email already used.');
+            $this->session->addMessage('Error : Email already used.', MessageType::Error);
         }
 
         return (bool) $user;
@@ -40,7 +41,7 @@ class AuthService
             $this->session->set(('userId'), $user['user_id']);
             $this->session->set(('userRole'), $user['user_role']);
         } else {
-            $this->session->addErrorMessage('Invalid credentials.');
+            $this->session->addMessage('Error : Invalid credentials.', MessageType::Error);
             $user = false;
         }
 

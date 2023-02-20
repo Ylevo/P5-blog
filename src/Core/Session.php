@@ -5,6 +5,7 @@ namespace App\Core;
 
 class Session
 {
+
     private const ADMIN_ROLE = 'Admin';
     private const MEMBER_ROLE = 'Member';
 
@@ -12,6 +13,7 @@ class Session
     {
         return $_SESSION[$key] ?? null;
     }
+
 
     public function set($key, $value): void
     {
@@ -28,25 +30,26 @@ class Session
         return $this->get($name);
     }
 
-    public function addErrorMessage(string $message) : void
+    public function addMessage(string $message, MessageType $type) : void
     {
+        $newMessage = ['content' => $message, 'type' => $type->value];
         $storedMessages = $this->get('errorMessages');
         if ($storedMessages == null) {
-            $this->set('errorMessages', array($message));
+            $this->set('errorMessages', array($newMessage));
         } else {
-            $storedMessages[] = $message;
+            $storedMessages[] = $newMessage;
             $this->set('errorMessages', $storedMessages);
         }
     }
 
-    public function getErrorMessages()
+    public function getMessages() : mixed
     {
         $error_message = $this->get('errorMessages');
         $this->remove('errorMessages');
         return $error_message;
     }
 
-    public function destroySession()
+    public function destroySession() : void
     {
         $_SESSION = array();
         session_destroy();
@@ -66,5 +69,11 @@ class Session
     {
         return $this->get('userRole') == $this::ADMIN_ROLE;
     }
+}
 
+enum MessageType : string
+{
+    case Success = "success";
+    case Error = "danger";
+    case Warning = "warning";
 }
