@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Core\MessageType;
 use App\Core\Session;
 use App\Entities\Comment;
 use App\Models\CommentModel;
@@ -35,14 +36,14 @@ class CommentService
                 date('Y-m-d H:i:s'),
                 $this->session->get('userRole') == 'Admin');
         } else {
-            $this->session->addErrorMessage("You must be logged in to post a comment.");
+            $this->session->addMessage("You must be logged in to post a comment.", MessageType::Error);
         }
     }
 
     public function getPaginatedUnvalidatedComments(int $page = 1, int $commentsPerPage = 15) : array
     {
         $data['lastPage'] = (int) ceil($this->commentModel->getUnvalidatedCommentsCount() / $commentsPerPage);
-        $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
+        $data['currentPage'] = min($page, $data['lastPage']);
         $offset = $data['currentPage'] > 1 ? ($data['currentPage'] - 1) * $commentsPerPage : 0;
         $data['comments'] =  array_map(function($comment){
             return new Comment($comment);

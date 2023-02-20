@@ -31,7 +31,7 @@ abstract class Controller
 
     public function badRequest() : void
     {
-        $this->session->addErrorMessage("Error 400 : bad request.");
+        $this->session->addMessage("Error 400 : bad request.", MessageType::Error);
         exit(header("Location: /"));
     }
 

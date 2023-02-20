@@ -39,7 +39,7 @@ class Router
     public function checkIfAdmin()
     {
         if (!$this->session->isUserAdmin()) {
-            $this->session->addErrorMessage("Unauthorized.");
+            $this->session->addMessage("Unauthorized.", MessageType::Error);
             exit(header("Location: /"));
         }
     }
