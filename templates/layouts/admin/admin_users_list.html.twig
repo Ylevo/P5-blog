@@ -36,6 +36,7 @@
                             </td>
                             <td class="text-center">
                                 {% if user.userId != session.userId %}
+                                    <input type="hidden" form="{{ user.userId }}" name="CSRFToken" value="{{ CSRFToken }}" />
                                     <input type="hidden" form="{{ user.userId }}" name="userId" value="{{ user.userId }}"/>
                                     <button type="submit" formaction="/admin/users/update"
                                             form="{{ user.userId }}"

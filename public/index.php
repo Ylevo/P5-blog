@@ -5,3 +5,4 @@ session_start();
 use App\Core\Router;
 
 (new Router())->run();
+

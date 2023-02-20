@@ -13,6 +13,7 @@ class Router
     {
         $this->bramusRouter = new BramusRouter();
         $this->session = new Session();
+        $this->generateCSRFToken();
         $this->addRoutes();
     }
 
@@ -29,17 +30,32 @@ class Router
         $this->bramusRouter->set404($parsedRouting['404']);
     }
 
-    public function checkIfLoggedIn()
+    public function checkIfLoggedIn() : void
     {
         if ($this->session->isLoggedIn()) {
             exit(header("Location: /"));
         }
     }
 
-    public function checkIfAdmin()
+    public function checkIfAdmin() : void
     {
         if (!$this->session->isUserAdmin()) {
-            $this->session->addMessage("Unauthorized.", MessageType::Error);
+            $this->session->addMessage("Error : Unauthorized access.", MessageType::Error);
+            exit(header("Location: /"));
+        }
+    }
+
+    public function generateCSRFToken() : void
+    {
+        if (empty($_SESSION['CSRFToken'])) {
+            $_SESSION['CSRFToken'] = bin2hex(openssl_random_pseudo_bytes(32));
+        }
+    }
+
+    public function checkCSRFToken() : void
+    {
+        if (!empty($_POST['CSRFToken']) && !hash_equals($_SESSION['CSRFToken'], $_POST['CSRFToken'])) {
+            $this->session->addMessage("Error : Invalid CSRF token.", MessageType::Error);
             exit(header("Location: /"));
         }
     }
@@ -48,6 +64,4 @@ class Router
     {
         $this->bramusRouter->run();
     }
-
-
 }

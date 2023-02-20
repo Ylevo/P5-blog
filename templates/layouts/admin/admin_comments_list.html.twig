@@ -10,6 +10,8 @@
             <h2 class="text-center">Users</h2>
             <hr>
             <form id="commentsForm" method="POST">
+                <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
+
                 {% for comment in comments %}
                     <div class="comment">
                         <div class="d-flex flex-row align-items-center comment-header">
@@ -24,6 +26,7 @@
                         <div class="comment-content"><span>{{ comment.content }}</span></div>
                     </div>
                 {% endfor %}
+
                 <hr>
             </form>
                 <div class="admin-validate-comment text-end">
