@@ -1,3 +1,8 @@
+header.masthead {
+  background: url('../img/banner.jpg');
+  background-size: cover;
+}
+
 .logo {
   width: 240px;
   height: 240px;
@@ -30,9 +35,12 @@
 }
 
 header.masthead .site-heading {
+  text-shadow: 5px 5px 10px rgb(0, 0, 0);
   padding-bottom: 130px;
   padding-top: 130px;
 }
+
+
 
 .footer-link {
   font-size: 17px;
@@ -44,7 +52,6 @@ header.masthead .site-heading {
 p.copyright {
   margin-top: 12px;
 }
-
 
 /* Login form */
 
@@ -129,9 +136,6 @@ p.copyright {
 
 .label-text {
   color: #8b8b8b;
-}
-
-#forgot-password-link {
 }
 
 #login-box-footer {
@@ -422,10 +426,3 @@ td select {
 .custom-header {
   margin-top:30px
 }
-
-
-
-
-
-
-

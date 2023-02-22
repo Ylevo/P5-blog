@@ -1,0 +1,7 @@
+---
+smtpServer: serverName
+smtpPort: 465
+senderEmail: email
+username: username
+password: password
+---

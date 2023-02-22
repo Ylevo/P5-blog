@@ -11,14 +11,14 @@
                 <input type="hidden" name="userId" value="{{ session.userId }}">
                 <div class="control-group">
                     <div class="form-floating controls mb-3">
-                        <input class="form-control" type="text" id="title" name="title" value="{{ post.title }}" required="" placeholder="Title">
+                        <input class="form-control" maxlength="90" type="text" id="title" name="title" value="{{ post.title }}" required="" placeholder="Title">
                         <label class="form-label" for="title">Title</label>
                         <small class="form-text text-danger help-block"></small>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-floating controls mb-3">
-                        <input class="form-control" type="text" id="lede" name="lede" value="{{ post.lede }}" required="" placeholder="Lede">
+                        <input class="form-control" maxlength="100"  type="text" id="lede" name="lede" value="{{ post.lede }}" required="" placeholder="Lede">
                         <label class="form-label" for="lede">Lede</label>
                         <small class="form-text text-danger help-block"></small>
                     </div>

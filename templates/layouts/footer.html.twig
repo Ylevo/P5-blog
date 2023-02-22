@@ -6,7 +6,7 @@
                     {% for contactInfo in getContactInfos() %}
                     <li class="list-inline-item">
                         <span class="fa-stack fa-lg">
-                            <a href="{{ contactInfo.url }}">
+                            <a href="{{ contactInfo.url }}" target="_blank">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-{{ contactInfo.name}} fa-stack-1x fa-inverse"></i>
                             </a>
@@ -15,7 +15,7 @@
                     {% endfor %}
                 </ul>
                 <p class="footer-link">
-                    <a href="{{ blogCustomization.cvUrl }}">My CV</a>
+                    <a href="{{ blogCustomization.cvUrl }} " target="_blank">My CV</a>
                 </p>
                 {%  if session.isUserAdmin()  %}
                 <p class="footer-link">
