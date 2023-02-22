@@ -9,9 +9,11 @@ use App\Services\AuthService;
 
 class LogoutController extends Controller
 {
-    public function logout()
+    public function logout() : void
     {
         (new AuthService(new UserModel(), $this->session))->logoutUser();
-        exit(header("Location: /"));
+
+        header("Location: /");
+        exit();
     }
 }

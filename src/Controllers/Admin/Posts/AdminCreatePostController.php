@@ -10,11 +10,13 @@ use App\Services\PostService;
 
 class AdminCreatePostController extends Controller
 {
-    public function createPost()
+    public function createPost() : void
     {
         (new PostService(new PostModel()))->createPost($_POST);
         $this->session->addMessage("New post with the title '{$_POST['title']}' created.", MessageType::Success);
-        exit(header("Location: /admin/posts"));
+
+        header("Location: /admin/posts");
+        exit();
     }
 
 }

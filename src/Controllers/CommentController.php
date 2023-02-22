@@ -11,7 +11,7 @@ use App\Services\PostService;
 
 class CommentController extends Controller
 {
-    public function addComment()
+    public function addComment() : void
     {
         if (!isset($_POST['postId'], $_POST['commentContent']) || empty($_POST['commentContent'])) {
             $this->badRequest();

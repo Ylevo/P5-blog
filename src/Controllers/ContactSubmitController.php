@@ -12,7 +12,7 @@ use App\Services\PostService;
 
 class ContactSubmitController extends Controller
 {
-    public function contactSubmit()
+    public function contactSubmit() : void
     {
         if (!isset($_POST['name'], $_POST['email'], $_POST['message'])) {
             $this->badRequest();

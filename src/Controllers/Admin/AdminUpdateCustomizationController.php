@@ -11,14 +11,15 @@ use App\Services\ContactInfoService;
 
 class AdminUpdateCustomizationController extends Controller
 {
-    public function updateOptions()
+    public function updateOptions() : void
     {
         (new BlogCustomizationService($this->session))->saveBlogCustomization(array_intersect_key(
             $_POST, array_flip(['header', 'headerDescription', 'cvUrl'])));
         (new ContactInfoService(new ContactInfoModel()))->updateContactInfos(array_intersect_key(
             $_POST, array_flip(['github', 'linkedin', 'twitter'])));
         $this->session->addMessage("Blog options saved.", MessageType::Success);
-        exit(header("Location: /admin"));
+
+        $this->render('layouts/admin/admin_dashboard.html.twig');
     }
 
 }

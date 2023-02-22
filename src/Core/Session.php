@@ -7,25 +7,24 @@ class Session
 {
 
     private const ADMIN_ROLE = 'Admin';
-    private const MEMBER_ROLE = 'Member';
 
-    public function get($key) : mixed
+    public function get(string $key) : mixed
     {
         return $_SESSION[$key] ?? null;
     }
 
 
-    public function set($key, $value): void
+    public function set(string $key, mixed $value): void
     {
         $_SESSION[$key] = $value;
     }
 
-    public function remove($key): void
+    public function remove(string $key): void
     {
         unset($_SESSION[$key]);
     }
 
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         return $this->get($name);
     }
@@ -34,7 +33,7 @@ class Session
     {
         $newMessage = ['content' => $message, 'type' => $type->value];
         $storedMessages = $this->get('errorMessages');
-        if ($storedMessages == null) {
+        if ($storedMessages === null) {
             $this->set('errorMessages', array($newMessage));
         } else {
             $storedMessages[] = $newMessage;
@@ -69,11 +68,4 @@ class Session
     {
         return $this->get('userRole') == $this::ADMIN_ROLE;
     }
-}
-
-enum MessageType : string
-{
-    case Success = "success";
-    case Error = "danger";
-    case Warning = "warning";
 }

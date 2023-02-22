@@ -9,7 +9,7 @@ use App\Services\AuthService;
 
 class LoginSubmitController extends Controller
 {
-    public function loginSubmit()
+    public function loginSubmit() : void
     {
         $authService = new AuthService(new UserModel(), $this->session);
 
@@ -18,7 +18,8 @@ class LoginSubmitController extends Controller
         }
 
         if ($authService->loginUser($_POST['email'], $_POST['password'])) {
-            exit(header("Location: /"));
+            header("Location: /");
+            exit();
         }
 
         $this->render('layouts/login.html.twig');

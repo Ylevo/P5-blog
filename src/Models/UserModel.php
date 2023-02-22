@@ -7,7 +7,7 @@ use App\Core\Model;
 
 class UserModel extends Model
 {
-    public function createUser($firstName, $lastName, $email, $passwordHash) : string|bool
+    public function createUser(string $firstName, string $lastName, string $email, string $passwordHash) : string|bool
     {
         if ($this->checkIfEmailUsed($email)) {
             return false;
@@ -20,14 +20,14 @@ class UserModel extends Model
         return $this->database->pdo->lastInsertId();
     }
 
-    public function getUser($email) : mixed
+    public function getUser(string $email) : mixed
     {
         $stmt = $this->database->run("SELECT * FROM user WHERE email = ?", [$email]);
 
         return $stmt->fetch();
     }
 
-    public function checkIfEmailUsed($email) : bool
+    public function checkIfEmailUsed(string $email) : bool
     {
         $stmt = $this->database->run("SELECT 1 FROM user WHERE email = ?",[$email]);
 

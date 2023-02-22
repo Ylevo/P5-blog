@@ -25,7 +25,7 @@ abstract class Controller
         $this->twig->addFunction(new TwigFunction('getContactInfos', [$this, 'getContactInfos']));
     }
 
-    public function render($template, $params = []): void
+    public function render(string $template, array $params = []): void
     {
         echo $this->twig->render($template, $params);
     }
@@ -33,7 +33,9 @@ abstract class Controller
     public function badRequest() : void
     {
         $this->session->addMessage("Error 400 : bad request.", MessageType::Error);
-        exit(header("Location: /"));
+
+        header("Location: /");
+        exit();
     }
 
     public function getPaginationPage() : int

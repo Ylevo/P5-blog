@@ -7,7 +7,7 @@ use App\Core\Controller;
 
 class AdminDashboardController extends Controller
 {
-    public function dashboard()
+    public function dashboard() : void
     {
         $this->render('layouts/admin/admin_dashboard.html.twig');
     }
