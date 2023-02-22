@@ -15,7 +15,6 @@ class AdminUpdatePostController extends Controller
         (new PostService(new PostModel()))->updatePost($_POST);
         $this->session->addMessage("Updated post with the title '{$_POST['title']}'.", MessageType::Success);
 
-        header("Location: /admin/posts");
-        exit();
+        $this->redirectTo("/admin/posts");
     }
 }

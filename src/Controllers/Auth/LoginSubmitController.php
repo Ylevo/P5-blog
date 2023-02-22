@@ -18,8 +18,7 @@ class LoginSubmitController extends Controller
         }
 
         if ($authService->loginUser($_POST['email'], $_POST['password'])) {
-            header("Location: /");
-            exit();
+            $this->redirectTo("/");
         }
 
         $this->render('layouts/login.html.twig');

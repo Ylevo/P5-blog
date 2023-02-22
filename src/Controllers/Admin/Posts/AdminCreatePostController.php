@@ -15,7 +15,6 @@ class AdminCreatePostController extends Controller
         (new PostService(new PostModel()))->createPost($_POST);
         $this->session->addMessage("New post with the title '{$_POST['title']}' created.", MessageType::Success);
 
-        header("Location: /admin/posts");
-        exit();
+        $this->redirectTo("/admin/posts");
     }
 }

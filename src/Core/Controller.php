@@ -30,13 +30,20 @@ abstract class Controller
         echo $this->twig->render($template, $params);
     }
 
+    public function redirectTo(string $route) : void
+    {
+        header("Location: $route");
+        exit();
+    }
+
     public function badRequest() : void
     {
         $this->session->addMessage("Error 400 : bad request.", MessageType::Error);
 
-        header("Location: /");
-        exit();
+        $this->redirectTo("/");
     }
+
+
 
     public function getPaginationPage() : int
     {

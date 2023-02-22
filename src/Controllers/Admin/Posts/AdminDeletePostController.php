@@ -15,7 +15,6 @@ class AdminDeletePostController extends Controller
         (new PostService(new PostModel()))->deletePost((int)$_POST['postId']);
         $this->session->addMessage("Post with the id {$_POST['postId']} successfully deleted.", MessageType::Success);
 
-        header("Location: /admin/posts");
-        exit();
+        $this->redirectTo("/admin/posts");
     }
 }

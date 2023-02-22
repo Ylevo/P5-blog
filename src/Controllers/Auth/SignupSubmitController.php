@@ -18,8 +18,7 @@ class SignupSubmitController extends Controller
         }
 
         if ($authService->signupUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'])) {
-            header("Location: /");
-            exit();
+            $this->redirectTo("/");
         }
 
         $this->render('layouts/signup.html.twig');
