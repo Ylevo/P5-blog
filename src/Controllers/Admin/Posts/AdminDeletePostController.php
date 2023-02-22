@@ -18,5 +18,4 @@ class AdminDeletePostController extends Controller
         header("Location: /admin/posts");
         exit();
     }
-
 }

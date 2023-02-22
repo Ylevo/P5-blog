@@ -53,5 +53,4 @@ class BlogCustomizationService
         $this->session->addMessage("New avatar successfully uploaded.", MessageType::Success);
         return true;
     }
-
 }

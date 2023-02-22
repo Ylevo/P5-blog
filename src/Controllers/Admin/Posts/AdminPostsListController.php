@@ -23,5 +23,4 @@ class AdminPostsListController extends Controller
     {
         $this->getPosts($this->getPaginationPage());
     }
-
 }

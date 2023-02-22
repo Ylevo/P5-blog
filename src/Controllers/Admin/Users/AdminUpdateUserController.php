@@ -18,5 +18,4 @@ class AdminUpdateUserController extends Controller
         header("Location: /admin/users");
         exit();
     }
-
 }

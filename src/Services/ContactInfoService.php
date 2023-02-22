@@ -30,5 +30,4 @@ class ContactInfoService
         }
         $this->contactInfoModel->updateContactInfos($newContactInfos);
     }
-
 }

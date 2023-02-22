@@ -18,5 +18,4 @@ class AdminUpdatePostController extends Controller
         header("Location: /admin/posts");
         exit();
     }
-
 }

@@ -23,5 +23,4 @@ class PostsController extends Controller
     {
         $this->getPosts($this->getPaginationPage());
     }
-
 }

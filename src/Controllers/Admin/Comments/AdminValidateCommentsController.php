@@ -23,5 +23,4 @@ class AdminValidateCommentsController extends Controller
         header("Location: /admin/comments");
         exit();
     }
-
 }

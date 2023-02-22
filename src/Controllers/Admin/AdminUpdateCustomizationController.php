@@ -21,6 +21,4 @@ class AdminUpdateCustomizationController extends Controller
 
         $this->render('layouts/admin/admin_dashboard.html.twig');
     }
-
 }
-                                                                        

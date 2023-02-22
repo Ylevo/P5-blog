@@ -29,7 +29,4 @@ class ContactInfo extends Entity
     {
         $this->url = $url;
     }
-
-
-
 }

@@ -24,5 +24,4 @@ class AdminUsersListController extends Controller
     {
         $this->getUsers($this->getPaginationPage());
     }
-
 }
