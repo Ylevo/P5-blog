@@ -9,7 +9,7 @@ use App\Services\PostService;
 
 class AdminPostsListController extends Controller
 {
-    public function getPosts(?int $page = 1, int $postsPerPage = 20) // could define posts per page in config file/admin dashboard later
+    public function getPosts(?int $page = 1, int $postsPerPage = 20) : void
     {
         $postsData = (new PostService(new PostModel()))->getPaginatedPosts($page ?? 1, $postsPerPage);
         $this->render('layouts/admin/admin_posts_list.html.twig', [

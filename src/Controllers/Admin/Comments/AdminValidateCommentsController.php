@@ -10,7 +10,7 @@ use App\Services\CommentService;
 
 class AdminValidateCommentsController extends Controller
 {
-    public function validateComments()
+    public function validateComments() : void
     {
         if (!isset($_POST['comments'])) {
             exit(header("Location: /admin/comments"));
@@ -18,7 +18,9 @@ class AdminValidateCommentsController extends Controller
 
         (new CommentService(new CommentModel(), $this->session))->validateComments($_POST['comments']);
         $this->session->addMessage(sizeof($_POST['comments']) . " comments successfully validated.", MessageType::Success);
-        exit(header("Location: /admin/comments"));
+
+        header("Location: /admin/comments");
+        exit();
     }
 
 }

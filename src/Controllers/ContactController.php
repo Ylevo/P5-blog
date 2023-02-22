@@ -11,7 +11,7 @@ use App\Services\PostService;
 
 class ContactController extends Controller
 {
-    public function contactForm()
+    public function contactForm() : void
     {
         $this->render('layouts/contact.html.twig');
     }

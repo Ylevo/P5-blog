@@ -9,7 +9,7 @@ use App\Services\CommentService;
 
 class AdminCommentsListController extends Controller
 {
-    public function getComments(?int $page = 1, int $commentsPerPage = 15)
+    public function getComments(?int $page = 1, int $commentsPerPage = 15) : void
     {
         $comments = (new CommentService(new CommentModel(), $this->session))->getPaginatedUnvalidatedComments($page ?? 1, $commentsPerPage);
         $this->render('layouts/admin/admin_comments_list.html.twig', [

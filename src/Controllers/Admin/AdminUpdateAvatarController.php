@@ -9,7 +9,7 @@ use App\Services\BlogCustomizationService;
 
 class AdminUpdateAvatarController extends Controller
 {
-    public function updateAvatar()
+    public function updateAvatar() : void
     {
         if (empty($_FILES)) {
             $this->session->addMessage("Error : could not upload new avatar - file size is over 2 MB.", MessageType::Error);
@@ -17,7 +17,6 @@ class AdminUpdateAvatarController extends Controller
             (new BlogCustomizationService($this->session))->uploadNewAvatar($_FILES['newAvatar']);
         }
 
-        exit(header("Location: /admin"));
+        $this->render('layouts/admin/admin_dashboard.html.twig');
     }
 }
-                                                                        

@@ -10,11 +10,13 @@ use App\Services\PostService;
 
 class AdminUpdatePostController extends Controller
 {
-    public function updatePost()
+    public function updatePost() : void
     {
         (new PostService(new PostModel()))->updatePost($_POST);
         $this->session->addMessage("Updated post with the title '{$_POST['title']}'.", MessageType::Success);
-        exit(header("Location: /admin/posts"));
+
+        header("Location: /admin/posts");
+        exit();
     }
 
 }

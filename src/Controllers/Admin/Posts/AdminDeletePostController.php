@@ -10,11 +10,13 @@ use App\Services\PostService;
 
 class AdminDeletePostController extends Controller
 {
-    public function deletePost()
+    public function deletePost() : void
     {
         (new PostService(new PostModel()))->deletePost((int)$_POST['postId']);
         $this->session->addMessage("Post with the id {$_POST['postId']} successfully deleted.", MessageType::Success);
-        exit(header("Location: /admin/posts"));
+
+        header("Location: /admin/posts");
+        exit();
     }
 
 }

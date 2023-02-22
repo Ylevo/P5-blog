@@ -10,7 +10,7 @@ use App\Services\CommentService;
 
 class AdminDeleteCommentsController extends Controller
 {
-    public function deleteComments()
+    public function deleteComments() : void
     {
         if (!isset($_POST['comments'])) {
             exit(header("Location: /admin/comments"));
@@ -18,7 +18,9 @@ class AdminDeleteCommentsController extends Controller
 
         (new CommentService(new CommentModel(), $this->session))->deleteComments($_POST['comments']);
         $this->session->addMessage(sizeof($_POST['comments']) . " comments successfully deleted.", MessageType::Success);
-        exit(header("Location: /admin/comments"));
+
+        header("Location: /admin/comments");
+        exit();
     }
 
 }

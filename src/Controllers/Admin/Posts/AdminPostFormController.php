@@ -9,7 +9,7 @@ use App\Services\PostService;
 
 class AdminPostFormController extends Controller
 {
-    public function newPostForm()
+    public function newPostForm() : void
     {
         $this->render('layouts/admin/admin_post_form.html.twig', [
             'postActionTitle' => "New Post",
@@ -17,9 +17,10 @@ class AdminPostFormController extends Controller
         ]);
     }
 
-    public function updatePostForm(int $postId)
+    public function updatePostForm(int $postId) : void
     {
         $post = (new PostService(new PostModel()))->getSinglePost($postId);
+
         $this->render('layouts/admin/admin_post_form.html.twig', [
             'postActionTitle' => "Edit Post",
             'postAction' => "/admin/posts/edit",

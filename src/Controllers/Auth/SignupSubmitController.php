@@ -9,7 +9,7 @@ use App\Services\AuthService;
 
 class SignupSubmitController extends Controller
 {
-    public function signupSubmit()
+    public function signupSubmit() : void
     {
         $authService = new AuthService(new UserModel(), $this->session);
 
@@ -18,7 +18,8 @@ class SignupSubmitController extends Controller
         }
 
         if ($authService->signupUser($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'])) {
-            exit(header("Location: /"));
+            header("Location: /");
+            exit();
         }
 
         $this->render('layouts/signup.html.twig');

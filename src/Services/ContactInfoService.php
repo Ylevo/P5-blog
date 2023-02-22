@@ -10,7 +10,7 @@ class ContactInfoService
 {
     private ContactInfoModel $contactInfoModel;
 
-    public function __construct($contactInfoModel)
+    public function __construct(ContactInfoModel $contactInfoModel)
     {
         $this->contactInfoModel = $contactInfoModel;
     }

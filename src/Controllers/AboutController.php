@@ -11,7 +11,7 @@ use App\Services\PostService;
 
 class AboutController extends Controller
 {
-    public function tellAboutMe()
+    public function tellAboutMe() : void
     {
         $this->render('layouts/about.html.twig');
     }

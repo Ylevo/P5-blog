@@ -11,7 +11,7 @@ use App\Services\PostService;
 
 class PostController extends Controller
 {
-    public function getPost(int $postId)
+    public function getPost(int $postId) : void
     {
         $postData = (new PostService(new PostModel()))->getSinglePost($postId);
         $commentsData = (new CommentService(new CommentModel(), $this->session))->getComments($postId);

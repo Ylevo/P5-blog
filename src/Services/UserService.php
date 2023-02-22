@@ -10,7 +10,7 @@ class UserService
 {
     private UserModel $userModel;
 
-    public function __construct($userModel)
+    public function __construct(UserModel $userModel)
     {
         $this->userModel = $userModel;
     }
