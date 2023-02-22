@@ -59,7 +59,7 @@ class Session
         return $_SESSION;
     }
 
-    public function isLoggedIn() : string
+    public function isLoggedIn() : string|null
     {
         return $this->get('userId');
     }

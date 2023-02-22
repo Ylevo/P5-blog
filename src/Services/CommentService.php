@@ -29,12 +29,14 @@ class CommentService
     public function createComment(int $postId, string $commentContent) : void
     {
         if ($this->session->get('userId')) {
+            $isAdmin = $this->session->isUserAdmin();
             $this->commentModel->createComment(
                 $postId,
                 $this->session->get('userId'),
                 $commentContent,
                 date('Y-m-d H:i:s'),
-                $this->session->get('userRole') == 'Admin');
+                $isAdmin);
+            $this->session->addMessage("Your comment has been " . ($isAdmin ? "successfully added." : "queued for validation."), MessageType::Success);
         } else {
             $this->session->addMessage("You must be logged in to post a comment.", MessageType::Error);
         }
