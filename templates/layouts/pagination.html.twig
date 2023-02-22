@@ -15,7 +15,7 @@
                 {% if ((currentPage >= 5) and (lastPage >= 6)) and
                     not((currentPage == 5) and (lastPage == 6))  %} {# 6 pages edge case, didn't find a workaround yet #}
                     <li class="page-item">
-                        <input type="text" name="pageNumber[]" class="page-link" placeholder="..." />
+                        <input type="text" pattern="[1-9]" name="pageNumber[]" class="page-link" placeholder="..." />
                     </li>
                 {% endif %}
 
@@ -39,7 +39,7 @@
                 {% if (((lastPage - currentPage) >= 4) and (lastPage >= 6)) and
                     not((currentPage == 2) and (lastPage == 6))  %} {# 6 pages edge case, didn't find a workaround yet #}
                     <li class="page-item">
-                        <input type="text" name="pageNumber[]" class="page-link" placeholder="..." />
+                        <input type="text" pattern="[1-9]" name="pageNumber[]" class="page-link" placeholder="..." />
                     </li>
                 {% endif %}
 

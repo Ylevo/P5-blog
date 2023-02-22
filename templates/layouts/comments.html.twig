@@ -6,7 +6,7 @@
         {% if session.userId is not null %}
             <form method="POST" action="/post/{{ postId }}">
                 <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-                    <textarea required class="form-control comment-input" name="commentContent" minlength="5" maxlength="600" placeholder="Add comment"></textarea>
+                    <textarea required class="form-control comment-input" name="commentContent" minlength="5" maxlength="300" placeholder="Add comment"></textarea>
                     <button class="btn btn-primary comment-submit" type="submit">Comment</button>
                     <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}" />
                     <input type="hidden" name="postId" value="{{ postId }}"/>

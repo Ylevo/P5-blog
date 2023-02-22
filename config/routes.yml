@@ -7,6 +7,18 @@ routes:
     controller: PostsController@getPosts
   -
     method: GET
+    pattern: /about
+    controller: AboutController@tellAboutMe
+  -
+    method: GET
+    pattern: /contact
+    controller: ContactController@contactForm
+  -
+    method: POST
+    pattern: /contact
+    controller: ContactSubmitController@contactSubmit
+  -
+    method: GET
     pattern: /posts(/\d+)?
     controller: PostsController@getPosts
   -
