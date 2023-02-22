@@ -13,7 +13,6 @@ class LogoutController extends Controller
     {
         (new AuthService(new UserModel(), $this->session))->logoutUser();
 
-        header("Location: /");
-        exit();
+        $this->redirectTo("/");
     }
 }

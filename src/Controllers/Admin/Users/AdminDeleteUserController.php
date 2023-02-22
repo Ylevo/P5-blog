@@ -15,7 +15,6 @@ class AdminDeleteUserController extends Controller
         (new UserService(new UserModel()))->deleteUser((int)$_POST['userId']);
         $this->session->addMessage("User with the id {$_POST['userId']} successfully deleted.", MessageType::Success);
 
-        header("Location: /admin/users");
-        exit();
+        $this->redirectTo("/admin/users");
     }
 }
