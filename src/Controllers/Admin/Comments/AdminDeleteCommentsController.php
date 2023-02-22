@@ -23,5 +23,4 @@ class AdminDeleteCommentsController extends Controller
         header("Location: /admin/comments");
         exit();
     }
-
 }

@@ -56,6 +56,4 @@ abstract class Controller
     {
         return (new BlogCustomizationService($this->session))->getBlogCustomization();
     }
-
-
 }

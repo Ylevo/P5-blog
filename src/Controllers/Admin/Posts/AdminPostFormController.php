@@ -27,5 +27,4 @@ class AdminPostFormController extends Controller
             'post' => $post
         ]);
     }
-
 }

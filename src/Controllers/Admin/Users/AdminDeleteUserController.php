@@ -18,5 +18,4 @@ class AdminDeleteUserController extends Controller
         header("Location: /admin/users");
         exit();
     }
-
 }
