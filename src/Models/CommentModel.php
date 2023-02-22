@@ -18,7 +18,7 @@ class CommentModel extends Model
                  ', [$postId])->fetchAll();
     }
 
-    public function createComment(int $postId, int $userId, string $content, string $creationDate, bool $validated)
+    public function createComment(int $postId, int $userId, string $content, string $creationDate, bool $validated) : void
     {
         $this->database->run("INSERT INTO comment (post_id, user_id, content, creation_date, validated) 
                                      VALUES (?, ?, ?, ?, ?)",
@@ -42,12 +42,12 @@ class CommentModel extends Model
                  ', [$offset, $commentsPerPage])->fetchAll();
     }
 
-    public function validateComments(array $comments)
+    public function validateComments(array $comments) : void
     {
         $this->database->runTransaction("UPDATE comment SET validated = 1 WHERE comment_id = ?", $comments);
     }
 
-    public function deleteComments(array $comments)
+    public function deleteComments(array $comments) : void
     {
         $this->database->runTransaction("DELETE FROM comment WHERE comment_id = ?", $comments);
     }

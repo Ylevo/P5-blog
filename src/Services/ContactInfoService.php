@@ -22,7 +22,7 @@ class ContactInfoService
         }, $this->contactInfoModel->getContactInfos());
     }
 
-    public function updateContactInfos(array $contactInfos)
+    public function updateContactInfos(array $contactInfos) : void
     {
         $newContactInfos = [];
         foreach ($contactInfos as $key => $value) {

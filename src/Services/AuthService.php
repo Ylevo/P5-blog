@@ -48,7 +48,7 @@ class AuthService
         return (bool) $user;
     }
 
-    public function logoutUser()
+    public function logoutUser() : void
     {
         $this->session->destroySession();
     }

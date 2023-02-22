@@ -52,13 +52,13 @@ class CommentService
         return $data;
     }
 
-    public function validateComments(array $commentsIds)
+    public function validateComments(array $commentsIds) : void
     {
         $this->commentModel->validateComments($commentsIds);
 
     }
 
-    public function deleteComments(array $commentsIds)
+    public function deleteComments(array $commentsIds) : void
     {
         $this->commentModel->deleteComments($commentsIds);
     }

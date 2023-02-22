@@ -10,7 +10,7 @@ use App\Services\UserService;
 
 class AdminDeleteUserController extends Controller
 {
-    public function deleteUser()
+    public function deleteUser() : void
     {
         (new UserService(new UserModel()))->deleteUser((int)$_POST['userId']);
         $this->session->addMessage("User with the id {$_POST['userId']} successfully deleted.", MessageType::Success);

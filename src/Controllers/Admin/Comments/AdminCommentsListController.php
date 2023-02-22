@@ -19,7 +19,7 @@ class AdminCommentsListController extends Controller
         ]);
     }
 
-    public function getCommentsFromPagination()
+    public function getCommentsFromPagination() : void
     {
         $this->getComments($this->getPaginationPage());
     }

@@ -13,7 +13,8 @@ class AdminValidateCommentsController extends Controller
     public function validateComments() : void
     {
         if (!isset($_POST['comments'])) {
-            exit(header("Location: /admin/comments"));
+            header("Location: /admin/comments");
+            exit();
         }
 
         (new CommentService(new CommentModel(), $this->session))->validateComments($_POST['comments']);
