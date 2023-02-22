@@ -13,7 +13,8 @@ class AdminDeleteCommentsController extends Controller
     public function deleteComments() : void
     {
         if (!isset($_POST['comments'])) {
-            exit(header("Location: /admin/comments"));
+            header("Location: /admin/comments");
+            exit();
         }
 
         (new CommentService(new CommentModel(), $this->session))->deleteComments($_POST['comments']);

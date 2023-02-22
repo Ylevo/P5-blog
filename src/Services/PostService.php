@@ -31,8 +31,12 @@ class PostService
     public function getSinglePost(int $postId) : Post
     {
         $postData = $this->postModel->getPost($postId);
-
-        return $postData ? new Post($postData) : exit(header("Location: /404"));
+        if ($postData) {
+            return new Post($postData);
+        } else {
+            header("Location: /404");
+            exit();
+        }
     }
 
     public function createPost(array $postData) : void

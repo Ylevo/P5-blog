@@ -19,7 +19,7 @@ class PostsController extends Controller
         ]);
     }
 
-    public function getPostsFromPagination()
+    public function getPostsFromPagination() : void
     {
         $this->getPosts($this->getPaginationPage());
     }

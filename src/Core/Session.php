@@ -24,7 +24,7 @@ class Session
         unset($_SESSION[$key]);
     }
 
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments) : mixed
     {
         return $this->get($name);
     }
@@ -59,12 +59,12 @@ class Session
         return $_SESSION;
     }
 
-    public function isLoggedIn()
+    public function isLoggedIn() : string|null
     {
         return $this->get('userId');
     }
 
-    public function isUserAdmin()
+    public function isUserAdmin() : bool
     {
         return $this->get('userRole') == $this::ADMIN_ROLE;
     }

@@ -19,7 +19,7 @@ class AdminPostsListController extends Controller
         ]);
     }
 
-    public function getPostsFromPagination()
+    public function getPostsFromPagination() : void
     {
         $this->getPosts($this->getPaginationPage());
     }

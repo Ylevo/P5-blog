@@ -9,7 +9,7 @@ use App\Services\UserService;
 
 class AdminUsersListController extends Controller
 {
-    public function getUsers(?int $page = 1, int $usersPerPage = 20)
+    public function getUsers(?int $page = 1, int $usersPerPage = 20) : void
     {
         $usersData = (new UserService(new UserModel()))->getPaginatedUsers($page ?? 1, $usersPerPage);
         $this->render('layouts/admin/admin_users_list.html.twig', [
@@ -20,7 +20,7 @@ class AdminUsersListController extends Controller
         ]);
     }
 
-    public function getUsersFromPagination()
+    public function getUsersFromPagination() : void
     {
         $this->getUsers($this->getPaginationPage());
     }
