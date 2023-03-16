@@ -34,7 +34,7 @@ class Router
     {
         if ($this->session->isLoggedIn()) {
             header("Location: /");
-            exit();
+            exit;
         }
     }
 
@@ -43,7 +43,7 @@ class Router
         if (!$this->session->isUserAdmin()) {
             $this->session->addMessage("Error : Unauthorized access.", MessageType::Error);
             header("Location: /");
-            exit();
+            exit;
         }
     }
 
@@ -59,7 +59,7 @@ class Router
         if (!empty($_POST['CSRFToken']) && !hash_equals($_SESSION['CSRFToken'], $_POST['CSRFToken'])) {
             $this->session->addMessage("Error : Invalid CSRF token.", MessageType::Error);
             header("Location: /");
-            exit();
+            exit;
         }
     }
 

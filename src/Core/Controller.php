@@ -43,8 +43,6 @@ abstract class Controller
         $this->redirectTo("/");
     }
 
-
-
     public function getPaginationPage() : int
     {
         if (empty($_POST['pageNumber'])) {
