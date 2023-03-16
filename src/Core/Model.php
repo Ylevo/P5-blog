@@ -10,6 +10,12 @@ abstract class Model
     public function __construct()
     {
        $config =  yaml_parse_file(__DIR__ . '/../../config/dbConfig.yml');
-       $this->database = new Database($config['database'], $config['username']);
+       $this->database = new Database(
+           $config['database'],
+           $config['username'],
+           $config['password'],
+           $config['host'],
+           $config['port']);
+
     }
 }

@@ -17,6 +17,6 @@ class AdminUpdateAvatarController extends Controller
             (new BlogCustomizationService($this->session))->uploadNewAvatar($_FILES['newAvatar']);
         }
 
-        $this->render('layouts/admin/admin_dashboard.html.twig');
+        $this->redirectTo('/admin');
     }
 }

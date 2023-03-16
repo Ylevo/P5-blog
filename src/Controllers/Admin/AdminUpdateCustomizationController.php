@@ -19,6 +19,6 @@ class AdminUpdateCustomizationController extends Controller
             $_POST, array_flip(['github', 'linkedin', 'twitter'])));
         $this->session->addMessage("Blog options saved.", MessageType::Success);
 
-        $this->render('layouts/admin/admin_dashboard.html.twig');
+        $this->redirectTo('/admin');
     }
 }
