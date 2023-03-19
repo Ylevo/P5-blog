@@ -1,5 +1,5 @@
 # P5-blog
-Blog project built with PHP
+Blog project built with PHP.
 ## Installation
 This project uses composer and docker.
 
