@@ -22,7 +22,7 @@ class CommentModel extends Model
     {
         $this->database->run("INSERT INTO comment (post_id, user_id, content, creation_date, validated) 
                                      VALUES (?, ?, ?, ?, ?)",
-                                     [$postId, $userId, $content, $creationDate, $validated]);
+                                     [$postId, $userId, $content, $creationDate, intval($validated)]);
     }
 
     public function getUnvalidatedCommentsCount() : int

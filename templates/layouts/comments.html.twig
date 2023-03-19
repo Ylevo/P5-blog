@@ -17,7 +17,7 @@
         {% endif %}
 
         {% for comment in comments %}
-            {% if (comment.validated) or (not comment.validated and session.userId == comment.userId) %}
+            {% if (comment.validated or session.isUserAdmin()) or (not comment.validated and session.userId == comment.userId) %}
                 <div class="comment">
                     <div class="d-flex flex-row align-items-center comment-header">
                         <div class="comment-author">{{ comment.authorName }}</div>
