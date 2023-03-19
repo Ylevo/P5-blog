@@ -24,8 +24,8 @@ class AuthService
         $user = $this->userModel->createUser($firstName, $lastName, $email, $passwordHash);
 
         if ($user) {
-            $this->session->set(('userId'), $user);
-            $this->session->set(('userRole'), 'Member');
+            $this->session->set('userId', (int)$user);
+            $this->session->set('userRole', 'Member');
         } else {
             $this->session->addMessage('Error : Email already used.', MessageType::Error);
         }
@@ -38,8 +38,8 @@ class AuthService
         $user = $this->userModel->getUser($email);
 
         if ($user && password_verify($password, $user['password_hash'])) {
-            $this->session->set(('userId'), $user['user_id']);
-            $this->session->set(('userRole'), $user['user_role']);
+            $this->session->set('userId', $user['user_id']);
+            $this->session->set('userRole', $user['user_role']);
         } else {
             $this->session->addMessage('Error : Invalid credentials.', MessageType::Error);
             $user = false;
