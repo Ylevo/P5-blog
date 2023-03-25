@@ -18,7 +18,7 @@ class PostService
     public function getPaginatedPosts(int $page = 1, int $postsPerPage = 5) : array
     {
         $data['lastPage'] = (int)ceil($this->postModel->getPostsCount() / $postsPerPage);
-        $data['currentPage'] = $page > $data['lastPage'] ? $data['lastPage'] : $page;
+        $data['currentPage'] = min($page, $data['lastPage']);
         $offset = $data['currentPage'] > 1 ? ($data['currentPage'] - 1) * $postsPerPage : 0;
         $postsArray = $this->postModel->getPosts($offset, $postsPerPage);
         $data['posts'] = array_map(function($post){
