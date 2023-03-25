@@ -17,11 +17,6 @@ class Post extends Entity
     private DateTime $creationDate;
     private DateTime $lastModifiedDate;
 
-    public function __construct(array $data = null)
-    {
-        parent::__construct($data);
-    }
-
     public function getPostId(): int
     {
         return $this->postId;

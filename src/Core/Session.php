@@ -5,14 +5,12 @@ namespace App\Core;
 
 class Session
 {
-
     private const ADMIN_ROLE = 'Admin';
 
     public function get(string $key) : mixed
     {
         return $_SESSION[$key] ?? null;
     }
-
 
     public function set(string $key, mixed $value): void
     {

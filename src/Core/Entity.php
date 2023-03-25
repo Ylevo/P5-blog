@@ -6,7 +6,7 @@ namespace App\Core;
 
 use ReflectionMethod;
 
-class Entity
+abstract class Entity
 {
     public function __construct(array $data = null)
     {
